@@ -27,19 +27,20 @@
               </div>
             </div>
             <div class="bottom">
-              <div class="card" v-for="(item, cid) in wish" v-bind:value="cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)">
+              <div class="card" v-for="(item, cid) in shop" v-bind:value="cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)">
                 <div class="logo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&amp;usqp=CAU"/></div>
                 <div class="content">
                   <div class="info">
-                    <p>許願者: {{item.name}}</p>
+                    <p>出租物件名稱: {{item.name}}</p>
                     <p>物件類型: {{item.type}}</p>
                     <p>物件坪數：{{item.size}}</p>
                   </div>
                   <div class="scores">
                     <p>配對率:</p>
-                    <div class="score">{{item.rate}}%</div>
+                    <div class="score">{{item.score}}%</div>
                   </div>
-                  <h2 class="rental_price">${{item.price[0]}}~${{item.price[1]}}/月</h2>
+                  <!--h2.rental_price ${{item.price[0]}}~${{item.price[1]}}/月-->
+                  <h2 class="rental_price">${{item.rental_price}}/月</h2>
                 </div>
               </div>
             </div>
@@ -56,14 +57,14 @@
             <hr/>
             <div class="charts">
               <div class="location"> 
-                <h4>所在位置: 信義區</h4>
+                <h4>所在位置: {{town}}</h4>
               </div>
               <div class="chart_block">
                 <h4 class="title">土地使用</h4>
                 <div id="pie_chart"> </div>
               </div>
               <div class="chart_block">
-                <h4 class="title">平均收入</h4>
+                <h4 class="title">人流</h4>
                 <div id="bar_chart"></div>
               </div>
               <div class="chart_block">
