@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title 商空月老
+        link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css")
+        link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css")
+        link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css")
+        link(rel="stylesheet" type="text/css" href="./style.css")
+    body
+        #app.main
+            .mainbox
+                .left
+                    //.left_bar
+                        .click_btn.ct1 改變需求
+                        .click_btn.ct2 上傳物件
+                    .right_box
+                        .top_bar
+                            .our_logo 
+                            h1.title 商空月老
+                            .buttons
+                                .c1.btn.b1 我要找房
+                                .c1.btn.b2 我有房源
+                                .c1.custom_log 大頭貼
+                        .bottom
+                            .card(v-for="(item, cid) in wish" v-bind:value="cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)")
+                                .logo
+                                    img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")
+                                .content
+                                    .info
+                                        p 許願者: {{item.name}}
+                                        p 物件類型: {{item.type}}
+                                        p 物件坪數：{{item.size}}
+                                    .scores
+                                        p 配對率:
+                                        .score {{item.rate}}%
+                                    h2.rental_price ${{item.price[0]}}~${{item.price[1]}}/月
+                .right
+                    .info_bar
+                        .title
+                            h4 區域探索<br>AREA EXPLORER
+                            .close
+                                p <<
+                        hr
+                        .charts
+                            .location 
+                                h4 所在位置: 信義區
+                            .chart_block
+                                h4.title 土地使用
+                                #pie_chart 
+                            .chart_block
+                                h4.title 平均收入
+                                #bar_chart
+                            .chart_block
+                                h4.title 房價走勢
+                                #line_chart
+                            .chart_block 
+                                h4.title 年齡分佈
+                                // This can be rendered by Vue
+                                #year_1.percent_block
+                                    span 0-15歲
+                                    span.right_text %
+                                    .percent_bar
+                                        .bar
+                                #year_2.percent_block
+                                    span 15-64歲
+                                    span.right_text %
+                                    .percent_bar
+                                        .bar
+                                #year_3.percent_block
+                                    span 64-100歲
+                                    span.right_text %
+                                    .percent_bar
+                                        .bar
+
+                            .chart_block 
+                                h4.title 交通路網
+                                #text_chart
+                                    i.subway.icon 
+                                        .icon_text 5
+                                    i.bus.icon 
+                                        .icon_text 10
+
+
+
+                    #mapid.map
+    
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js")
+        script(src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js")
+        script(src="https://code.highcharts.com/highcharts.js")
+        script(src="./test_map.js")
+        script(src="./plot.js")

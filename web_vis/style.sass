@@ -1,0 +1,210 @@
+*
+    //border: solid 1px black
+    position: relative
+    font-family: 微軟正黑體
+    margin: 0
+
+[v-cloak]
+  display: none !important
+
+
+html,body
+    width: 100%
+    height: 100%
+    margin: 0
+  
+.main
+    width: 100%
+    height: 100%
+
+    .mainbox
+        height: 100%
+        display: flex
+    
+    .left
+        width: 45%
+        height: 100%
+        display: flex
+        // display: inline-box
+        //.left_bar
+        //  width: 15%
+        //  height: 100%
+        //  // display: inline-block
+        .right_box
+            width: 100%
+            height: 100%
+            padding-left: 20px
+            // display: inline-box
+        .top_bar
+            height: 10%
+            // display: inline-box
+            .title, .buttons, .btn, .custom_log
+                display: inline-block
+            .buttons
+                position: absolute
+                right: 30px
+                top: 10px
+                cursor: pointer
+            .c1
+                margin: 5px
+            .btn
+                border: solid 1px black
+                padding: 5px
+                border-radius: 10px
+                transition-duration: 0.5s
+                &:hover
+                    transform: translateY(-5%)
+                    background-color: #e3e3e3
+                    box-shadow: 0px 2px 0px rgba(0,0,0,0.2)
+        
+        .bottom
+            height: 90%
+            border-top: solid 1px gray
+            // border-left: solid 1px gray
+            // display: inline-box
+            //display: flex
+            //justify-content: center
+            //align-items: center
+            overflow: scroll
+            .card
+                border: solid 2px gray
+                margin-top: 20px
+                width: 95%
+                height: 200px
+                border-radius: 20px
+                display: flex
+                overflow: hidden
+                cursor: pointer
+                transition-duration: 0.5s
+                &:hover
+                    transform: translateY(-5%)
+                    background-color: #e3e3e3
+                    box-shadow: 0px 3px 0px rgba(0,0,0,0.2)
+                .logo
+                    width: 25%
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                img
+                    //border-radius: 50%
+                    width: 100%
+                .content
+                    width: 75%
+                    display: flex
+                    .info
+                        padding: 10px
+                        p
+                            //overflow: hidden
+                            //text-overflow: ellipsis 
+                            padding: 5px
+                    .scores, .rental_price
+                        position: absolute
+                        display: flex
+                        align-items: center
+                        right: 3%
+                    .scores
+                        margin-top: 10px
+                        .score
+                        border: solid 1px black
+                        padding: 10px 20px
+                        border-radius: 20px
+                        text-align: center
+                        p
+                            margin-right: 5px
+                    .rental_price
+                        bottom: 3%  
+                
+
+    .right
+        width: 55%
+        height: 100%
+        overflow: hidden
+        .map
+            height: 100%
+            width: 100%
+            z-index: 1000
+
+
+.info_bar
+    position: absolute
+    height: 100%
+    width: 40%
+    left: -40%
+    //border: solid 1px black
+    background-color: white
+    z-index: 5000
+    transition-duration: 0.5s
+    border-left: solid 1px gray
+    .chart_block, .location, .title
+        box-sizing: border-box
+        padding-top: 10px
+        padding-left: 10px
+    .charts
+        height: 100%
+        overflow: scroll
+    .close
+        font-weight: normal
+        position: absolute
+        right: 0px
+        top: 0px
+        display: inline-block
+        //padding: 3px 8px
+        p
+            margin: 0
+            right: -100%
+            padding: 3px 3px
+            border-top-right-radius: 3px
+            border-bottom-right-radius: 3px
+            background-color: #f2f2f2
+            cursor: pointer
+            &:hover
+                background-color: gray
+
+.info_bar
+    .location
+        height: 30px
+    #pie_chart
+        width: 100%
+        height: 200px
+    #bar_chart
+        width: 90%
+        height: 200px
+    #text_chart
+        margin-bottom: 40px
+        margin-top: 20px
+    #line_chart
+        width: 90%
+        height: 200px
+    .percent_block
+        box-sizing: border-box
+        padding: 2%
+        position: relative
+        width: 100%
+        span.right_text
+            position: absolute
+            right: 10%
+        .percent_bar
+            width: 90%
+            height: 6px
+            border-radius: 5px
+            overflow: hidden
+            .bar
+                width: 0
+                height: 100%
+                background-color: #c5cbd4
+
+
+.open
+  left: 0
+
+i.icon
+    font-size: 20px
+    width: 45%
+    height: 60px
+    .icon_text
+        width: 40px
+        display: inline-block
+        //margin-left: 5px
+
+.highcharts-credits
+    display: none
