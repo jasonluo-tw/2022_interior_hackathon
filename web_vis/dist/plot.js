@@ -47,6 +47,7 @@ function plot_bar_chart(dom_id, categories, data) {
     categories: ['0~5','5~10','15~20']
     data: [12, 13, 14, 15, 16, 18, 19, 20, 30...]
   */
+ console.log(categories, data)
   Highcharts.chart(dom_id, {
     chart: {
       type: 'column'
@@ -56,23 +57,21 @@ function plot_bar_chart(dom_id, categories, data) {
     },
     xAxis: {
       categories: categories,
-      crosshair: false
-    },
-    xAxis: {
+      crosshair: false,
       title: {
-        text: '年齡分佈'
+        text: '時段'
       }
     },
     yAxis: {
       min: 0,
       title: {
-        text: '平均收入'
+        text: '人數'
       }
     },
     tooltip: {
       headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
       pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-        '<td style="padding:0"><b>$NT:{point.y:.1f}</b></td></tr>',
+        '<td style="padding:0"><b>{point.y:.1f}人</b></td></tr>',
       footerFormat: '</table>',
       shared: true,
       useHTML: true
@@ -84,17 +83,18 @@ function plot_bar_chart(dom_id, categories, data) {
       }
     },
     series: [{
-      name: '收入',
+      name: '電信令',
       data: data,
       showInLegend: false
     }]
   });
 }
 
-function plot_line_chart(dom_id, data) {
+function plot_line_chart(dom_id, data, ylabel) {
   /*
     data: [1, 2, 3, 4]
   */
+ console.log(data)
   Highcharts.chart(dom_id, {
     title: {
       text: null
@@ -102,15 +102,14 @@ function plot_line_chart(dom_id, data) {
 
     yAxis: {
       title: {
-        text: '租金'
+        text: ylabel
       }
     },
   
     xAxis: {
-      //TODO
-      accessibility: {
-        rangeDescription: 'Range: 2015 to 2019'
-      }
+      //accessibility: {
+      //  rangeDescription: 'Range: 2015 to 2019'
+      //}
     },
     //legend: {
     //  layout: 'vertical',
@@ -123,14 +122,15 @@ function plot_line_chart(dom_id, data) {
           connectorAllowed: false
         },
         //TODO
-        pointStart: 2015
+        //pointStart: 2015
       }
     },
-  
-    series: [{
-      name: '店舖租金走勢',
-      data: data 
-    }],
+    series: data
+    //series: [{
+    //  name: '店舖租金',
+    //  //data: data
+    //  data: [[2015, 110], [2016, 112], [2017, 120]] 
+    //}],
     //responsive: {
     //  rules: [{
     //    condition: {
@@ -175,12 +175,32 @@ function plot_horizontal_bar(dom_id, percent) {
 
 function plot_traffic_chart(dom_id, child_dom, total_nums) {
   let num = 0
+  let time_interval = 1000 / total_nums 
   var timer1 = setInterval(function(){
     $(`#${dom_id} > ${child_dom}`).text(`${num}`)
     num += 1
     if(num > total_nums){
       clearInterval(timer1)
     }
-  }, 30)
+  }, time_interval)
 
+}
+
+//TODO Here should use fetch/axio to get the data and then called plot
+function plot_all(json) {
+  // plot explorer
+    // pie chart example
+  plot_pie_chart('pie_chart', json['land_use'])
+  // bar chart example
+  plot_bar_chart('bar_chart', json['population']['x'], json['population']['value'])
+  // line chart example
+  plot_line_chart('line_chart', json['shop_price'], '租金')
+  plot_line_chart('line_chart2', json['consume_index'], '消費熱度指數')
+  // year bar 
+  plot_horizontal_bar('year_1', json['age']['0-14歲人口數'])
+  plot_horizontal_bar('year_2', json['age']['15-64歲人口數'])
+  plot_horizontal_bar('year_3', json['age']['65歲以上人口數'])
+  // traffic nums
+  plot_traffic_chart('text_chart', 'i.bus.icon > .icon_text', parseInt(json['bus_stops']))
+  plot_traffic_chart('text_chart', 'i.subway.icon > .icon_text', parseInt(json['MRT_stops']))
 }
