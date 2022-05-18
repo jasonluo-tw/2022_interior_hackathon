@@ -47,10 +47,19 @@ function initVue() {
     })
 }
 
+var selectedCard = null 
 function initMap() {
     // Make map
     mymap = L.map('mapid', {zoomControl: false}).setView([25.09108, 121.5598], 13)
     pts_group = L.featureGroup().addTo(mymap)
+    pts_group.on("click", function(e){
+        let card_index = e.layer.options.card_index
+        //location.href = "#card_"+card_index
+        document.querySelector("#card_"+card_index).scrollIntoView({
+            behavior: 'smooth'
+        })
+        cardClick(card_index)
+    })
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -68,6 +77,30 @@ function initMap() {
 
 }
 
+var clicking_pts = []
+function ptClick(clickedCircle) {
+    //TODO: unclicked other pts
+    if(clicking_pts.length > 0) {
+        for(let i in clicking_pts){
+            clicking_pts[i][0].setStyle({fillColor: clicking_pts[i][1]})
+            clicking_pts[i][0].setRadius(6)
+        }
+        clicking_pts = []
+    }
+
+    //let name = clickedCircle.options.name
+    let card_index  = clickedCircle.options.card_index
+    clicking_pts.push([clickedCircle, clickedCircle.options.fillColor])
+
+    // after clicking, the color and radius of the point change
+    clickedCircle.setStyle({fillColor: 'red'})
+    clickedCircle.setRadius(8)
+    // custom clicking function
+    //if(!from_card) {
+    //    cardClick(card_index)
+    //}
+}
+
 function addPts(pts_list) {
     for(let i in pts_list) {
         let lat = pts_list[i]['latitude']
@@ -77,12 +110,13 @@ function addPts(pts_list) {
 
         L.circleMarker([lat, lon], {
                 className: 'circle_transition',
-                radius: 3.5,
+                radius: 6,
                 color: "white",
                 weight: 1,
-                fillColor: "red",
+                fillColor: "gray",
                 fillOpacity: 1.0,
                 name: name,
+                card_index: i
                 //value: value
             }
         ).bindTooltip(name, {direction: 'top'})//, {pane: tooltip_pane})
@@ -107,13 +141,20 @@ function matchPts(clicked_name) {
 }
 
 function cardClick (index) {
+    //TODO
+    if(selectedCard) {
+        document.getElementById(selectedCard).classList.remove("selectedCard")
+    }
+    document.getElementById("card_"+index).classList.add("selectedCard")
+    selectedCard = "card_"+index
+    
     $(".info_bar").addClass('open')
     let clicked_name = shop_list[index]['name']
     let clicked_town = shop_list[index]['town']
     let lat = shop_list[index]['latitude']
     let lon = shop_list[index]['longitude']
     pt_layer = matchPts(clicked_name)
-    let pts_g = pts_group
+    //let pts_g = pts_group
 
     // Test fetch
     let api_url = 'http://127.0.0.1:5000/get_region_info?town='+clicked_town
@@ -135,6 +176,8 @@ function cardClick (index) {
     })
 
     mymap.flyTo([lat, lon], 14)
+    ptClick(pt_layer)
+
     // print clicked name
     console.log(clicked_name)
 }

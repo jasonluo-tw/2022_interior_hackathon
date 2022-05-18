@@ -90,7 +90,7 @@ function plot_bar_chart(dom_id, categories, data) {
   });
 }
 
-function plot_line_chart(dom_id, data) {
+function plot_line_chart(dom_id, data, ylabel) {
   /*
     data: [1, 2, 3, 4]
   */
@@ -102,15 +102,14 @@ function plot_line_chart(dom_id, data) {
 
     yAxis: {
       title: {
-        text: '租金'
+        text: ylabel
       }
     },
   
     xAxis: {
-      //TODO
-      accessibility: {
-        rangeDescription: 'Range: 2015 to 2019'
-      }
+      //accessibility: {
+      //  rangeDescription: 'Range: 2015 to 2019'
+      //}
     },
     //legend: {
     //  layout: 'vertical',
@@ -123,14 +122,15 @@ function plot_line_chart(dom_id, data) {
           connectorAllowed: false
         },
         //TODO
-        pointStart: 2015
+        //pointStart: 2015
       }
     },
-  
-    series: [{
-      name: '店舖租金走勢',
-      data: data 
-    }],
+    series: data
+    //series: [{
+    //  name: '店舖租金',
+    //  //data: data
+    //  data: [[2015, 110], [2016, 112], [2017, 120]] 
+    //}],
     //responsive: {
     //  rules: [{
     //    condition: {
@@ -194,7 +194,8 @@ function plot_all(json) {
   // bar chart example
   plot_bar_chart('bar_chart', json['population']['x'], json['population']['value'])
   // line chart example
-  plot_line_chart('line_chart', json['shop_price']['value'])
+  plot_line_chart('line_chart', json['shop_price'], '租金')
+  plot_line_chart('line_chart2', json['consume_index'], '消費熱度指數')
   // year bar 
   plot_horizontal_bar('year_1', json['age']['0-14歲人口數'])
   plot_horizontal_bar('year_2', json['age']['15-64歲人口數'])
