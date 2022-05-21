@@ -11,6 +11,7 @@ html, body
 
 #navi_bar
     border-bottom: 1px solid gray
+    
 
 .main
     display: flex
@@ -55,11 +56,16 @@ html, body
             height: 90%
             overflow: scroll
             .house_card
+                background-color: white
                 border: 2px solid gray
+                border-bottom: 0px
                 border-radius: 20px
+                border-bottom-left-radius: 0px
+                border-bottom-right-radius: 0px
                 margin-right: 20px
-                +size(300px, 99%)
+                +size(300px, 100%)
                 min-width: 300px
+                box-sizing: border-box
 
                 h3, .content
                     margin-top: 20px

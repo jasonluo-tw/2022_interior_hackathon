@@ -20,9 +20,12 @@ html(lang="en")
                             .our_logo 
                             h1.title 商空月老
                             .buttons
+                                //.c1.btn 改變需求
+                                //.c1.btn 上傳物件
                                 .c1.btn.b1 我要找房
                                 .c1.btn.b2 我有房源
-                                .c1.custom_log 大頭貼
+                                .c1.btn
+                                    i.user.circle.icon
                         .bottom
                             .card(v-for="(item, cid) in shop" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)")
                                 .logo
