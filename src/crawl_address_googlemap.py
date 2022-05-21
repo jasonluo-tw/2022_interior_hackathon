@@ -1,7 +1,6 @@
 import pandas as pd
 import requests
-from openpyxl import Workbook
-import time
+import time, sys
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 import random, os
@@ -20,7 +19,7 @@ def coordination(url, header):
     ## line[2] => lat
     return line[1], line[2]
 
-folder = '/Users/luo-j/Documents/competition/2022_interior_hackathon/data'
+folder = '/home/jasonluo/Documents/competition/2022_interior_hackathon/crawl_data'
 if os.path.exists(os.path.join(folder, 'remain_places.csv')):
     places = pd.read_csv(os.path.join(folder, 'remain_places.csv'))
 else:
