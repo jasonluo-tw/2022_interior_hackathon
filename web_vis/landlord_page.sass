@@ -9,10 +9,6 @@
 html, body
     min-height: 768px
 
-#navi_bar
-    border-bottom: 1px solid gray
-    
-
 .main
     display: flex
     +size(100%, 90%)
@@ -66,7 +62,16 @@ html, body
                 +size(300px, 100%)
                 min-width: 300px
                 box-sizing: border-box
+                display: flex
+                flex-direction: column
+                align-items: center 
 
-                h3, .content
+                .image
+                    display: flex
+                    justify-content: center
+                    img
+                        width: 80%
+
+                h5, .content, img
                     margin-top: 20px
-                    padding-left: 20px
+                    //padding-left: 20px

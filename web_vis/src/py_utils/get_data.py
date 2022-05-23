@@ -71,14 +71,14 @@ def process_region_data(data):
 
 def get_shop_data(path):
     ##TODO: In the future, if the data becomes larger, we should consider database
-    file_path = os.path.join(path, 'shop_info.csv')
-    data = pd.read_csv(file_path)
+    file_path = os.path.join(path, '591-shop.tsv')
+    data = pd.read_csv(file_path, sep='\t')
 
     return data
 
 def process_shop_data(data, scores=None):
     ##TODO: image url/path
-    data = data[['town', 'name', 'rental_price', 'size', 'floor', 'address', 'longitude', 'latitude', 'type', 'house_age', 'MRT_within_1km', 'bus_within_1km']].copy()
+    data = data[['town', 'name', 'rental_price', 'size', 'floor', 'address', 'longitude', 'latitude', 'type', 'house_age', 'MRT_within_1km', 'Bus_within_1km', 'img_url']].copy()
     data = data.fillna('no data')
     if scores is not None:
         data['score'] = scores
@@ -98,4 +98,4 @@ if __name__ == '__main__':
     data = get_shop_data('/home/jasonluo/Documents/competition/2022_interior_hackathon/data')
     data, response = process_shop_data(data)
     for item in response:
-        print(item)
+        print(item['bus_stops'])

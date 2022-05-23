@@ -21,8 +21,6 @@ fetch('http://127.0.0.1:5000/get_shop_info',  {
     },
     method: 'get'
 }).then(response => response.json()).then(json => {
-    console.log([1, 2, 3])
-    console.log(json, typeof(json))
     vm['shop'] = json
     shop_list = json
     addPts(json)
@@ -106,7 +104,6 @@ function addPts(pts_list) {
         let lat = pts_list[i]['latitude']
         let lon = pts_list[i]['longitude']
         let name = pts_list[i]['name']
-        console.log(lat, lon)
 
         L.circleMarker([lat, lon], {
                 className: 'circle_transition',
@@ -167,9 +164,8 @@ function cardClick (index) {
     })
     .then(response => response.json())
     .then(json => {
-        console.log(json)
         // plot explorer
-        plot_all(json)
+        plot_all(json, shop_list[index])
     })
     .catch(error => {
         console.log(error)

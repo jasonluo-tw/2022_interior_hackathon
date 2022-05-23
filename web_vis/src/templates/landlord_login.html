@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>商空月老</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/basic.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/landlord_login.css"/>
+  </head>
+  <body> 
+    <div id="navi_bar"> 
+      <div class="top_bar">
+        <div class="our_logo"> </div>
+        <h1 class="title">商空月老</h1>
+        <div class="buttons">
+          <div class="c1 btn b1">我要找房</div>
+          <div class="c1 btn b2">我有房源</div>
+          <!--.c1.btn-->
+          <!--    i.user.circle.icon-->
+        </div>
+      </div>
+    </div>
+    <div class="main"> <img class="user_logo"/>
+      <form action="http://127.0.0.1:5000/login_confirm" method="post">
+        <div class="block">
+          <div class="text">使用者名稱：</div>
+          <div class="ui large icon input">
+            <input class="user" type="text" name="username" placeholder="輸入數字"/>
+          </div>
+        </div>
+        <div class="block">
+          <div class="text">密碼：</div>
+          <div class="ui large icon input">
+            <input class="user" type="text" name="pssword" placeholder="不用打"/>
+          </div>
+        </div>
+        <button class="buttons btn">登入</button>
+      </form>
+    </div>
+  </body>
+</html>

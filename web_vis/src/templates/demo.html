@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css"/>
-    <link rel="stylesheet" type="text/css" href="./basic.css"/>
-    <link rel="stylesheet" type="text/css" href="./style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/basic.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
   </head>
   <body>
     <div class="main" id="app">
@@ -31,7 +31,9 @@
             </div>
             <div class="bottom">
               <div class="card" v-for="(item, cid) in shop" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)">
-                <div class="logo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&amp;usqp=CAU"/></div>
+                <div class="logo">
+                  <!--img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")--><img v-bind:src="item.img_url"/>
+                </div>
                 <div class="content">
                   <div class="info">
                     <p>出租物件名稱: {{item.name}}</p>
@@ -98,7 +100,7 @@
                 </div>
               </div>
               <div class="chart_block"> 
-                <h4 class="title">交通路網</h4>
+                <h4 class="title">1公里內交通工具數量</h4>
                 <div id="text_chart"><i class="subway icon"> 
                     <div class="icon_text">5</div></i><i class="bus icon"> 
                     <div class="icon_text">10</div></i></div>
@@ -114,7 +116,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="./test_map.js"></script>
-    <script src="./plot.js"></script>
+    <script src="/static/test_map.js"></script>
+    <script src="/static/plot.js"></script>
   </body>
 </html>

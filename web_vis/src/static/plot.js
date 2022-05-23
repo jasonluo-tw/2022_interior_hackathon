@@ -47,7 +47,6 @@ function plot_bar_chart(dom_id, categories, data) {
     categories: ['0~5','5~10','15~20']
     data: [12, 13, 14, 15, 16, 18, 19, 20, 30...]
   */
- console.log(categories, data)
   Highcharts.chart(dom_id, {
     chart: {
       type: 'column'
@@ -94,7 +93,6 @@ function plot_line_chart(dom_id, data, ylabel) {
   /*
     data: [1, 2, 3, 4]
   */
- console.log(data)
   Highcharts.chart(dom_id, {
     title: {
       text: null
@@ -187,20 +185,20 @@ function plot_traffic_chart(dom_id, child_dom, total_nums) {
 }
 
 //TODO Here should use fetch/axio to get the data and then called plot
-function plot_all(json) {
+function plot_all(region_json, shop_info) {
   // plot explorer
     // pie chart example
-  plot_pie_chart('pie_chart', json['land_use'])
+  plot_pie_chart('pie_chart', region_json['land_use'])
   // bar chart example
-  plot_bar_chart('bar_chart', json['population']['x'], json['population']['value'])
+  plot_bar_chart('bar_chart', region_json['population']['x'], region_json['population']['value'])
   // line chart example
-  plot_line_chart('line_chart', json['shop_price'], '租金')
-  plot_line_chart('line_chart2', json['consume_index'], '消費熱度指數')
+  plot_line_chart('line_chart', region_json['shop_price'], '租金')
+  plot_line_chart('line_chart2', region_json['consume_index'], '消費熱度指數')
   // year bar 
-  plot_horizontal_bar('year_1', json['age']['0-14歲人口數'])
-  plot_horizontal_bar('year_2', json['age']['15-64歲人口數'])
-  plot_horizontal_bar('year_3', json['age']['65歲以上人口數'])
+  plot_horizontal_bar('year_1', region_json['age']['0-14歲人口數'])
+  plot_horizontal_bar('year_2', region_json['age']['15-64歲人口數'])
+  plot_horizontal_bar('year_3', region_json['age']['65歲以上人口數'])
   // traffic nums
-  plot_traffic_chart('text_chart', 'i.bus.icon > .icon_text', parseInt(json['bus_stops']))
-  plot_traffic_chart('text_chart', 'i.subway.icon > .icon_text', parseInt(json['MRT_stops']))
+  plot_traffic_chart('text_chart', 'i.bus.icon > .icon_text', parseInt(shop_info['Bus_within_1km']))
+  plot_traffic_chart('text_chart', 'i.subway.icon > .icon_text', parseInt(shop_info['MRT_within_1km']))
 }

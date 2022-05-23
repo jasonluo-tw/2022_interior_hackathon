@@ -1,6 +1,8 @@
 data/
 tbl/Taiwan_CODE_mapping
 tbl/Taipei_CODE_mapping
-web_vis/node_modules
+web_vis/node_modules/
+web_vis/dist/
 crawl_data/
 src/log/
+

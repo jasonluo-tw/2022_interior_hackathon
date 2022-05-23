@@ -2,58 +2,65 @@ html, body {
   min-height: 768px;
 }
 
-#navi_bar {
-  border-bottom: 1px solid gray;
-}
-
 .main {
   display: flex;
   width: 100%;
   height: 90%;
 }
+
 .main .left {
   width: 20%;
   height: 100%;
 }
+
 .main .right {
   width: 80%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
+
 .main .user_info {
   flex-grow: 1;
   display: flex;
   align-items: center;
 }
+
 .main .user_info .info_card {
   width: 70%;
   height: 100%;
   padding-top: 30px;
 }
+
 .main .user_info .info_card h3 {
   padding-left: 0px;
 }
+
 .main .user_info .buttons .btn {
   font-size: 20px;
   padding: 15px 60px;
 }
+
 .main .user_info .buttons .b1 {
   margin-bottom: 30px;
 }
+
 .main .house_info {
   width: 100%;
   height: 65%;
 }
+
 .main .house_info h2.title {
   height: 10%;
   margin: 0px;
 }
+
 .main .house_info .house {
   display: flex;
   height: 90%;
   overflow: scroll;
 }
+
 .main .house_info .house .house_card {
   background-color: white;
   border: 2px solid gray;
@@ -66,8 +73,21 @@ html, body {
   height: 100%;
   min-width: 300px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.main .house_info .house .house_card h3, .main .house_info .house .house_card .content {
+
+.main .house_info .house .house_card .image {
+  display: flex;
+  justify-content: center;
+}
+
+.main .house_info .house .house_card .image img {
+  width: 80%;
+}
+
+.main .house_info .house .house_card h5, .main .house_info .house .house_card .content, .main .house_info .house .house_card img {
   margin-top: 20px;
-  padding-left: 20px;
 }
+/*# sourceMappingURL=landlord_page.css.map */

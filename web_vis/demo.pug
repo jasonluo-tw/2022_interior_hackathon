@@ -6,8 +6,8 @@ html(lang="en")
         link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css")
         link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css")
         link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css")
-        link(rel="stylesheet" type="text/css" href="./basic.css")
-        link(rel="stylesheet" type="text/css" href="./style.css")
+        link(rel="stylesheet" type="text/css" href="/static/basic.css")
+        link(rel="stylesheet" type="text/css" href="/static/style.css")
     body
         #app.main
             .mainbox
@@ -29,7 +29,8 @@ html(lang="en")
                         .bottom
                             .card(v-for="(item, cid) in shop" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)")
                                 .logo
-                                    img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")
+                                    //img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")
+                                    img(v-bind:src="item.img_url")
                                 .content
                                     .info
                                         p 出租物件名稱: {{item.name}}
@@ -82,7 +83,7 @@ html(lang="en")
                                         .bar
 
                             .chart_block 
-                                h4.title 交通路網
+                                h4.title 1公里內交通工具數量
                                 #text_chart
                                     i.subway.icon 
                                         .icon_text 5
@@ -98,5 +99,5 @@ html(lang="en")
         script(src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js")
         script(src="https://code.highcharts.com/highcharts.js")
-        script(src="./test_map.js")
-        script(src="./plot.js")
+        script(src="/static/test_map.js")
+        script(src="/static/plot.js")

@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css"/>
-    <link rel="stylesheet" type="text/css" href="./basic.css"/>
-    <link rel="stylesheet" type="text/css" href="./landlord_page.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/basic.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/landlord_page.css"/>
   </head>
   <body>
     <div id="navi_bar"> 
@@ -26,7 +26,7 @@
       <div class="right">
         <div class="user_info">
           <div class="info_card">
-            <h4>姓名：王大明</h4>
+            <h4>姓名：{{ username }}</h4>
             <h4>使用者帳號類型：免費</h4>
             <h4>XXXXXX</h4>
             <h4>XXXXXX</h4>
@@ -39,25 +39,21 @@
         <div class="house_info"> 
           <h2 class="title">你的物件</h2>
           <div class="house">
-            <!--TODO: Vue render-->
-            <div class="house_card">
-              <h3 class="title">物件名稱1</h3>
-              <div class="content">
-                <p>暫時不知道要放什麼東西</p>
+            {% for house_info in house_infos %}
+              <div class="house_card">
+                <h5 class="title"> {{ house_info['name'] }}</h3>
+                <div class="image">
+                  <img src={{ house_info['img_url'] }}>
+                </div>
+                <div class="content">
+                  <p>地區： {{ house_info['town'] }}</p>
+                  <p>大樓類型： {{ house_info['type'] }}</p>
+                  <p>地址： {{ house_info['address'] }}</p>
+                  <p>樓層： {{ house_info['floor'] }}</p>
+                  <p>坪數： {{ house_info['size'] }}</p>
+                </div>
               </div>
-            </div>
-            <div class="house_card">
-              <h3 class="title">物件名稱1</h3>
-              <div class="content">
-                <p>暫時不知道要放什麼東西</p>
-              </div>
-            </div>
-            <div class="house_card">
-              <h3 class="title">物件名稱1</h3>
-              <div class="content">
-                <p>暫時不知道要放什麼東西</p>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
