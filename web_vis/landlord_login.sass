@@ -1,0 +1,39 @@
+@mixin size($w, $h)
+    width: $w
+    height: $h
+    
+*
+    //border: 1px solid black
+
+.main
+    +size(100%, 90%)
+    display: flex
+    //justify-content: center
+    align-items: center
+    flex-direction: column
+
+    img.user_logo
+        +size(20vw, 20vw)
+        margin-bottom: 2vw
+        margin-top: 2vw
+
+    form
+        display: flex
+        align-times: center
+        flex-direction: column
+
+        .text
+            padding-bottom: 5px
+
+        div.ui.large.icon.input
+            +size(20vw, 2vw)
+            margin-bottom: 1vw
+            input.user
+                width: 120px
+        span
+            margin-right: 5px
+            font-size: 20px
+
+        button
+            margin-top: 5px
+            height: 2.5rem
