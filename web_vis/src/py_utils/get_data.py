@@ -83,8 +83,7 @@ def get_shop_data(path):
     return data
 
 def process_shop_data(data, scores=None):
-    ##TODO: image url/path
-    data = data[['二級', 'town', 'name', 'rental_price', 'size', 'floor', 'address', 'longitude', 'latitude', 'type', 'house_age', 'MRT_within_1km',
+    data = data[['house_index', '二級', 'town', 'name', 'rental_price', 'size', 'floor', 'address', 'longitude', 'latitude', 'type', 'house_age', 'MRT_within_1km',
                  'Bus_within_1km', 'img_url', '餐廳餐館', '便利商店', '美容美髮服務', '日常用品零售', '飲料店業', '其他綜合零售']].copy()
     data = data.fillna('no data')
     if scores is not None:
@@ -97,23 +96,31 @@ def process_shop_data(data, scores=None):
 
     return data, response
 
+def get_shop_embedding(path, house_index):
+    filepath = os.path.join(path, 'shops', 'shop_embedding.csv')
+    shop_embedding = pd.read_csv(filepath)
+    shop_embedding['house_index'] = shop_embedding['house_index'].astype('str')
+
+    target_shop = shop_embedding[shop_embedding['house_index'] == house_index]
+
+    return target_shop
+
 def get_all_wish_list(path):
     ## get wish list
-    file_path = os.path.join(path, 'wish_list', 'wishlist.csv')
-    wish_list = pd.read_csv(file_path)
+    file_path = os.path.join(path, 'wish_list', 'wish_info.csv')
+    wish_list = pd.read_csv(file_path, dtype='str')
     ## get embedding list
-    file_path = os.path.join(path, 'wish_list', 'wishlist_embedding.csv')
-    wish_embedding = pd.read_csv(file_path)
+    file_path = os.path.join(path, 'wish_list', 'wish_embedding.csv')
+    wish_embedding = pd.read_csv(file_path, dtype='str')
 
     return wish_list, wish_embedding
 
 if __name__ == '__main__':
-    pass
     #data = get_region_data('/home/jasonluo/Documents/competition/2022_interior_hackathon/data', town_name='大安區', second_dis='A6303-18')
     #data = process_region_data(data)
     #print(data)
-    #data = get_shop_data('/home/jasonluo/Documents/competition/2022_interior_hackathon/data')
-    #data, response = process_shop_data(data)
-    #print(data)
-    get_all_wish_list('/home/jasonluo/Documents/competition/2022_interior_hackathon/data')
+    data = get_shop_data('/home/jasonluo/Documents/competition/2022_interior_hackathon/data')
+    data, response = process_shop_data(data)
+    print(response)
+    #get_all_wish_list('/home/jasonluo/Documents/competition/2022_interior_hackathon/data')
 

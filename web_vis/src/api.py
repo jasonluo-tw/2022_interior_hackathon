@@ -3,7 +3,7 @@ from flask import request, jsonify, url_for, redirect, session
 from flask_cors import cross_origin
 from py_utils.get_data import get_region_data, process_region_data
 from py_utils.get_data import get_shop_data, process_shop_data
-from py_utils.get_data import get_all_wish_list
+from py_utils.get_data import get_all_wish_list, get_shop_embedding
 from py_utils.function import calculate_shop_similarity
 import yaml
 
@@ -18,23 +18,22 @@ def get_region_info():
 
     return jsonify(response)
 
-
+# This is used by Vue, at tenant map
 @cross_origin()
 def get_shop_info():
     args = request.args
     
     data = get_shop_data(config_path['data'])
-    ##TODO
-    scores = calculate_shop_similarity(data)
+    ##TODO: calculate
+    #scores = calculate_shop_similarity(data)
     if 'counts' in args.to_dict():
         data = data.iloc[:int(args['counts'])]
-        scores = scores[:int(args['counts'])]
+        #scores = scores[:int(args['counts'])]
 
     ## process_shop_data
-    data, response = process_shop_data(data, scores)
+    data, response = process_shop_data(data, scores=None)
 
     return jsonify(response)
-
 
 ## confirm login
 @cross_origin()
@@ -49,35 +48,59 @@ def confirm_landlord_login():
         data = data[data['user_index'] == form['username']]
         data, response = process_shop_data(data)
         session.permanent = True
+        ## Store data to cookie
         session['landlord_houses_'+form['username']] = response
         session['username'] = form['username']
-        print(response)
+        #print(response)
         return redirect(url_for("landlord_page", username=form['username']))
     else:
         response = 'NoData'
         return jsonify(response)
 
+## This is used by Vue, at landlord map page
 @cross_origin()
 def calculate_scores_wish_list():
     ## Get the house index by user
-    form = request.form.to_dict()
-    username = session['username']
-    shop_items = session['landlord_page_'+username]
-    target_shop_item = shop_items[form['house_index']]
-    ## get shop embedding 
-    target_shop_embedding = get_shop_embedding(username, form['house_index'])
+    ### Get data from URL get, get house index/or name
+    #form = request.form.to_dict()
+    #try:
+    #    username = session['username']
+    #    shop_items = session['landlord_page_'+username]
+    #    house_index = form['house_index']
+    #else:
+    #    resopne = 'Error'
+    #    return jsonify(response)
+
+    ## TEST code
+    username = '0'
+    house_index = '0'
+    data = get_shop_data(config_path['data'])
+    data['user_index'] = data['user_index'].astype('str')
+    data = data[data['user_index'] == username]
+    data, response = process_shop_data(data)
+    shop_items = response
     ##
+    for item in shop_items:
+        if str(item['house_index']) == house_index:
+            target_shop_item = item
+            break
+    ## get shop embedding 
+    target_shop_embedding = get_shop_embedding(config_path['data'], house_index)
+    ## get all wish list
     wish_list, wish_embedding = get_all_wish_list(config_path['data'])
 
     scores, index = calculate_shop_similarity(target_shop_embedding, wish_embedding)
-    ## Sorted
-    sorted_scores = scores[index]
-    sorted_wish_list = wish_list[index]
-    ## and return the sorted wish list
 
-    session['sorted_wish'] = wish_list[:10]
+    wish_list['scores'] = scores
+    ## wish list is DataFrame 
+    sorted_wish_list = wish_list.iloc[index]
+    top_10_wish = wish_list.iloc[:10]
+    
+    top_10_wish = list(top_10_wish.to_dict('index').values())
 
-    return redirect(url_for("", ))
+    #return response
+    return jsonify(response)
 
 if __name__ == '__main__':
-    pass
+    json_wish = calculate_scores_wish_list()
+    print(json_wish)

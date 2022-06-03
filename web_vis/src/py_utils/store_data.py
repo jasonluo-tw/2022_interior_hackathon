@@ -46,7 +46,7 @@ def make_embedding(path, wish_form):
     with open('/home/jasonluo/Documents/competition/2022_interior_hackathon/web_vis/src/py_utils/shop_feature_mapping.yaml', 'r') as f:
         map_table = yaml.safe_load(f)
     ## open embedding statics
-    embed_statics = pd.read_csv(os.path.join(path, 'shop_embedding', 'embedding_statics.csv'))
+    embed_statics = pd.read_csv(os.path.join(path, 'shops', 'embedding_statics.csv'))
     embed_statics = embed_statics.set_index('feature_name')
 
     #print(wish_form)

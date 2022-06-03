@@ -44,6 +44,8 @@ def tenant_map():
 app.add_url_rule('/api/get_region_info', view_func=api.get_region_info, methods=['GET'])
 app.add_url_rule('/api/get_shop_info', view_func=api.get_shop_info, methods=['GET'])
 app.add_url_rule('/api/login_confirm', view_func=api.confirm_landlord_login, methods=['POST'])
+app.add_url_rule('/api/calculate_similar',
+                 view_func=api.calculate_scores_wish_list, methods=['GET'])
 
 
 if __name__ == '__main__':

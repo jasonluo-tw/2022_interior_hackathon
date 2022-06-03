@@ -36,10 +36,10 @@ house_age:
 
 human_age:
   age_0_14: 0-14歲人口數
-  age_15_24: 14-24歲人口數
+  age_15_24: 15-24歲人口數
   age_25_39: 25-39歲人口數
   age_40_64: 40-64歲人口數
-  age_65up: 65歲人口數
+  age_65up: 65歲以上人口數
 
 people_stream:
   day_morning: DAY_WORK(7:00~13:00)
