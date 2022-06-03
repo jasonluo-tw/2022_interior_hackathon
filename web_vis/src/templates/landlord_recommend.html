@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>商空月老</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/basic.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+  </head>
+  <body>
+    <div class="main" id="app" v-cloak="v-cloak">
+      <div class="mainbox">
+        <div class="left">
+          <!--.left_bar
+          .click_btn.ct1 改變需求
+          .click_btn.ct2 上傳物件
+          -->
+          <div class="right_box">
+            <div class="top_bar">
+              <div class="our_logo"> </div>
+              <h1 class="title">商空月老</h1>
+              <div class="buttons">
+                <!--.c1.btn 改變需求-->
+                <!--.c1.btn 上傳物件-->
+                <div class="c1 btn b1">我要找房</div>
+                <div class="c1 btn b2">我有房源</div>
+                <div class="c1 btn"><i class="user circle icon"></i></div>
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="card" v-for="(item, cid) in shop" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)">
+                <div class="logo">
+                  <!--img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")--><img v-bind:src="item.img_url"/>
+                </div>
+                <div class="content">
+                  <div class="info">
+                    <p>出租物件名稱: {{item.name}}</p>
+                    <p>物件類型: {{item.type}}</p>
+                    <p>物件坪數：{{item.size}}</p>
+                  </div>
+                  <div class="scores">
+                    <p>配對率:</p>
+                    <div class="score">{{item.score}}%</div>
+                  </div>
+                  <!--h2.rental_price ${{item.price[0]}}~${{item.price[1]}}/月-->
+                  <h2 class="rental_price">${{item.rental_price}}/月</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="info_bar">
+            <div class="title">
+              <h4>區域探索<br>AREA EXPLORER</h4>
+              <div class="close">
+                <p><<</p>
+              </div>
+            </div>
+            <hr/>
+            <div class="charts">
+              <div class="location"> 
+                <h4>所在位置: {{town}}</h4>
+              </div>
+              <div class="chart_block">
+                <h4 class="title">店舖價走勢</h4>
+                <div id="line_chart"></div>
+              </div>
+              <div class="chart_block">
+                <h4 class="title">人流</h4>
+                <div id="bar_chart"></div>
+              </div>
+              <div class="chart_block">
+                <h4 class="title">消費熱度指數</h4>
+                <div id="line_chart2"></div>
+              </div>
+              <div class="location"> 
+                <h4>二級行政區: {{second_dis}}</h4>
+              </div>
+              <div class="chart_block">
+                <h4 class="title">土地使用</h4>
+                <div id="pie_chart"> </div>
+              </div>
+              <div class="chart_block"> 
+                <h4 class="title">年齡分佈</h4>
+                <div class="percent_block" id="year_1"><span>0-14歲</span><span class="right_text">%</span>
+                  <div class="percent_bar">
+                    <div class="bar"></div>
+                  </div>
+                </div>
+                <div class="percent_block" id="year_2"><span>15-24歲</span><span class="right_text">%</span>
+                  <div class="percent_bar">
+                    <div class="bar"></div>
+                  </div>
+                </div>
+                <div class="percent_block" id="year_3"><span>25-39歲</span><span class="right_text">%</span>
+                  <div class="percent_bar">
+                    <div class="bar"></div>
+                  </div>
+                </div>
+                <div class="percent_block" id="year_4"><span>40-64歲</span><span class="right_text">%</span>
+                  <div class="percent_bar">
+                    <div class="bar"></div>
+                  </div>
+                </div>
+                <div class="percent_block" id="year_5"><span>65歲以上</span><span class="right_text">%</span>
+                  <div class="percent_bar">
+                    <div class="bar"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="location"> 
+                <h4>一公里內</h4>
+              </div>
+              <div class="chart_block"> 
+                <h4 class="title">同業種數量</h4>
+                <div id="shop_num"></div>
+              </div>
+              <div class="chart_block"> 
+                <h4 class="title">交通工具數量</h4>
+                <div id="text_chart"><i class="subway icon"> 
+                    <div class="icon_text">0</div></i><i class="bus icon"> 
+                    <div class="icon_text">0</div></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="map" id="mapid"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="/static/test_map.js"></script>
+    <script src="/static/plot.js"></script>
+  </body>
+</html>

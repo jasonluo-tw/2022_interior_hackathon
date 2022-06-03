@@ -15,7 +15,7 @@ initVue()
 initMap()
 
 // test block
-fetch('http://127.0.0.1:5000/get_shop_info',  {
+fetch('http://127.0.0.1:5000/api/get_shop_info',  {
     headers: {
         'Content-Type': 'application/json'
     },
@@ -35,7 +35,9 @@ function initVue() {
         el: "#app",
         data: {
             shop: [],
-            town: ''
+            town: '',
+            second_dis: '',
+            clicked_item: {},
         },
         methods: {
             c_click: cardClick,
@@ -148,14 +150,20 @@ function cardClick (index) {
     $(".info_bar").addClass('open')
     let clicked_name = shop_list[index]['name']
     let clicked_town = shop_list[index]['town']
+    let clicked_second = shop_list[index]['二級']
     let lat = shop_list[index]['latitude']
     let lon = shop_list[index]['longitude']
     pt_layer = matchPts(clicked_name)
     //let pts_g = pts_group
+    
+    //detail & show detail
+    vm.clicked_item = shop_list[index]
+    $("#bottom_block").css("height", 0)
 
     // Test fetch
-    let api_url = 'http://127.0.0.1:5000/get_region_info?town='+clicked_town
+    let api_url = 'http://127.0.0.1:5000/api/get_region_info?town='+clicked_town+'&second_dis='+clicked_second
     vm['town'] = clicked_town
+    vm['second_dis'] = clicked_second
     fetch(api_url, {
         headers: {
             'Content-Type': 'application/json'
@@ -198,4 +206,8 @@ function cardLeave (index) {
 
 $(".close > p").click(() => {
     $(".info_bar").removeClass('open')
+})
+
+$("#close_detail").click(() => {
+    $("#bottom_block").css("height", "100%")
 })

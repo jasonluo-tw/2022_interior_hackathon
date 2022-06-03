@@ -9,7 +9,7 @@ html(lang="en")
         link(rel="stylesheet" type="text/css" href="/static/basic.css")
         link(rel="stylesheet" type="text/css" href="/static/style.css")
     body
-        #app.main
+        #app(v-cloak).main
             .mainbox
                 .left
                     //.left_bar
@@ -26,7 +26,7 @@ html(lang="en")
                                 .c1.btn.b2 我有房源
                                 .c1.btn
                                     i.user.circle.icon
-                        .bottom
+                        #bottom_block.bottom
                             .card(v-for="(item, cid) in shop" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)")
                                 .logo
                                     //img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")
@@ -41,54 +41,95 @@ html(lang="en")
                                         .score {{item.score}}%
                                     //h2.rental_price ${{item.price[0]}}~${{item.price[1]}}/月
                                     h2.rental_price ${{item.rental_price}}/月
+                        .bottom_detail 
+                            .left_detail
+                                h3 {{clicked_item.name}}
+                                .img_block
+                                    img(v-bind:src="clicked_item.img_url")
+                                //Should scroll
+                                .specail_detail 
+                                    h3 [特色]
+                                        //.detail_text {{clicked_item.special}}
+                                        .detail_text {{clicked_item.type}}
+                                    h3 [其他資訊]
+                                        //.detail_text {{clicked_item.other_info}}
+                                        .detail_text {{clicked_item.floor}}
+
+                            .right_detail 
+                                .price  ${{clicked_item.rental_price}}/月
+                                .detail_info
+                                    p 哈拉哈拉
+                                #close_detail.close_detail
+                                    i.angle.double.down.icon
+                                    
+
+                        
                 .right
                     .info_bar
                         .title
                             h4 區域探索<br>AREA EXPLORER
                             .close
                                 p <<
+
                         hr
                         .charts
                             .location 
                                 h4 所在位置: {{town}}
                             .chart_block
-                                h4.title 土地使用
-                                #pie_chart 
+                                h4.title 店舖價走勢
+                                #line_chart
                             .chart_block
                                 h4.title 人流
                                 #bar_chart
                             .chart_block
-                                h4.title 房價走勢
-                                #line_chart
-                            .chart_block
                                 h4.title 消費熱度指數
                                 #line_chart2
+
+                            .location 
+                                h4 二級行政區: {{second_dis}}
+                            .chart_block
+                                h4.title 土地使用
+                                #pie_chart 
                             .chart_block 
                                 h4.title 年齡分佈
-                                // This can be rendered by Vue
                                 #year_1.percent_block
-                                    span 0-15歲
+                                    span 0-14歲
                                     span.right_text %
                                     .percent_bar
                                         .bar
                                 #year_2.percent_block
-                                    span 15-64歲
+                                    span 15-24歲
                                     span.right_text %
                                     .percent_bar
                                         .bar
                                 #year_3.percent_block
-                                    span 64-100歲
+                                    span 25-39歲
+                                    span.right_text %
+                                    .percent_bar
+                                        .bar
+                                #year_4.percent_block
+                                    span 40-64歲
+                                    span.right_text %
+                                    .percent_bar
+                                        .bar
+                                #year_5.percent_block
+                                    span 65歲以上
                                     span.right_text %
                                     .percent_bar
                                         .bar
 
+                            .location 
+                                h4 一公里內
                             .chart_block 
-                                h4.title 1公里內交通工具數量
+                                h4.title 同業種數量
+                                #shop_num
+                            .chart_block 
+                                h4.title 交通工具數量
                                 #text_chart
                                     i.subway.icon 
-                                        .icon_text 5
+                                        .icon_text 0
                                     i.bus.icon 
-                                        .icon_text 10
+                                        .icon_text 0
 
 
 

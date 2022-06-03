@@ -105,44 +105,15 @@ function plot_line_chart(dom_id, data, ylabel) {
     },
   
     xAxis: {
-      //accessibility: {
-      //  rangeDescription: 'Range: 2015 to 2019'
-      //}
     },
-    //legend: {
-    //  layout: 'vertical',
-    //  align: 'right',
-    //  verticalAlign: 'middle'
-    //},
     plotOptions: {
       series: {
         label: {
           connectorAllowed: false
         },
-        //TODO
-        //pointStart: 2015
       }
     },
     series: data
-    //series: [{
-    //  name: '店舖租金',
-    //  //data: data
-    //  data: [[2015, 110], [2016, 112], [2017, 120]] 
-    //}],
-    //responsive: {
-    //  rules: [{
-    //    condition: {
-    //      maxWidth: 500
-    //    },
-    //    chartOptions: {
-    //      legend: {
-    //        layout: 'horizontal',
-    //        align: 'center',
-    //        verticalAlign: 'bottom'
-    //      }
-    //    }
-    //  }]
-    //}
   });
 }
 
@@ -171,7 +142,7 @@ function plot_horizontal_bar(dom_id, percent) {
   }, time_interval)
 }
 
-function plot_traffic_chart(dom_id, child_dom, total_nums) {
+function plot_traffic_nums(dom_id, child_dom, total_nums) {
   let num = 0
   let time_interval = 1000 / total_nums 
   var timer1 = setInterval(function(){
@@ -181,7 +152,33 @@ function plot_traffic_chart(dom_id, child_dom, total_nums) {
       clearInterval(timer1)
     }
   }, time_interval)
+}
 
+function plot_shop_nums(dom_id, shop_data, shop_list) {
+  const shop_node = document.getElementById(dom_id)
+  console.log(shop_node)
+  shop_node.innerHTML = ""
+  console.log("hello")
+  for(let i=0; i<shop_list.length; i++){
+    let shop_name = shop_list[i]
+    let shop_nums = shop_data[shop_name]
+    let html_tag = `<span id="shop_${i}">${shop_name}: <span class="number">0</span></span>`
+    $(`#${dom_id}`).append(html_tag)
+
+    run_number(`#${dom_id} > span#shop_${i} > span.number`, shop_nums)
+  }
+}
+
+function run_number(dom, total_nums) {
+  let num = 0
+  let time_interval = 1000 / total_nums
+  var timer = setInterval(function() {
+    $(dom).text(`${num}`)
+    num += 1
+    if(num > total_nums){
+      clearInterval(timer)
+    }
+  }, time_interval)
 }
 
 //TODO Here should use fetch/axio to get the data and then called plot
@@ -196,9 +193,14 @@ function plot_all(region_json, shop_info) {
   plot_line_chart('line_chart2', region_json['consume_index'], '消費熱度指數')
   // year bar 
   plot_horizontal_bar('year_1', region_json['age']['0-14歲人口數'])
-  plot_horizontal_bar('year_2', region_json['age']['15-64歲人口數'])
-  plot_horizontal_bar('year_3', region_json['age']['65歲以上人口數'])
+  plot_horizontal_bar('year_2', region_json['age']['15-24歲人口數'])
+  plot_horizontal_bar('year_3', region_json['age']['25-39歲人口數'])
+  plot_horizontal_bar('year_4', region_json['age']['40-64歲人口數'])
+  plot_horizontal_bar('year_5', region_json['age']['65歲以上人口數'])
+  // shop amount
+  plot_shop_nums("shop_num", shop_info, ['餐廳餐館', '便利商店', '美容美髮服務', '日常用品零售', '飲料店業', '其他綜合零售'])
+  // 餐廳餐館', '便利商店', '美容美髮服務', '日常用品零售', '飲料店業', '其他綜合零售'
   // traffic nums
-  plot_traffic_chart('text_chart', 'i.bus.icon > .icon_text', parseInt(shop_info['Bus_within_1km']))
-  plot_traffic_chart('text_chart', 'i.subway.icon > .icon_text', parseInt(shop_info['MRT_within_1km']))
+  plot_traffic_nums('text_chart', 'i.bus.icon > .icon_text', parseInt(shop_info['Bus_within_1km']))
+  plot_traffic_nums('text_chart', 'i.subway.icon > .icon_text', parseInt(shop_info['MRT_within_1km']))
 }

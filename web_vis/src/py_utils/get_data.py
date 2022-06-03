@@ -2,34 +2,40 @@ from re import I
 import pandas as pd
 import os, sys
 
-def get_region_data(root_path, town_name=None):
+def get_region_data(root_path, town_name=None, second_dis=None):
     file_path = os.path.join(root_path, 'final_output', 'district_features.csv')
     data = pd.read_csv(file_path)
+    ## second district
+    file_path = os.path.join(root_path, 'final_output', 'second_district_features.csv')
+    second_data = pd.read_csv(file_path)
     ## electronic invoice
     file_path = os.path.join(root_path, 'electronic_invoice.csv')
     consumption_index = pd.read_csv(file_path)[['TOWN', 'industry', 'year', 'consumption_index']]
     if town_name is not None:
         data = data[data['TOWN'] == town_name]
         consumption_index = consumption_index[consumption_index['TOWN'] == town_name]
+    if second_dis is not None:
+        second_data = second_data[second_data['二級發布區代碼'] == second_dis]
 
-    data = {'data': data, 'consumption_index': consumption_index}
+    data = {'data': data, 'consumption_index': consumption_index, 'second_data': second_data}
 
     return data
 
 def process_region_data(data):
     consume_index = data['consumption_index']
+    second_data = data['second_data']
     data = data['data']
     ## land use
-    all_land = data[['商業', '純住宅', '混合使用住宅']].copy()#.sum(axis=1)
-    land_use = round(all_land / float(all_land.sum(axis=1)) * 100)
+    all_land = second_data[['商業', '純住宅', '混合使用住宅']].copy()#.sum(axis=1)
+    land_use = round(all_land+1 / float(all_land.sum(axis=1) +1) * 100)
     land_use = land_use.T.iloc[:, 0].to_dict()
     land_use = [{'name': key, 'y': int(land_use[key])} for key in land_use]
     ## age
-    age = data[['0-14歲人口數', '15-64歲人口數', '65歲以上人口數']].copy()
+    age = second_data[['0-14歲人口數', '15-24歲人口數', '25-39歲人口數', '40-64歲人口數', '65歲以上人口數']].copy()
     age = round(age / float(age.sum(axis=1)) * 100)
     age = age.T.iloc[:, 0].map(lambda x: int(x)).to_dict()
     ## shop price
-    shop_price = {'name': '店舖租金', 'data': []}
+    shop_price = {'name': '店舖價格', 'data': []}
     for i in range(104, 110):
         value = float(data['shop_price_unit_'+str(i)])
         shop_price['data'].append([i+1911, round(value)])
@@ -71,14 +77,15 @@ def process_region_data(data):
 
 def get_shop_data(path):
     ##TODO: In the future, if the data becomes larger, we should consider database
-    file_path = os.path.join(path, '591-shop.tsv')
+    file_path = os.path.join(path, 'shops', '591-datadb.tsv')
     data = pd.read_csv(file_path, sep='\t')
 
     return data
 
 def process_shop_data(data, scores=None):
     ##TODO: image url/path
-    data = data[['town', 'name', 'rental_price', 'size', 'floor', 'address', 'longitude', 'latitude', 'type', 'house_age', 'MRT_within_1km', 'Bus_within_1km', 'img_url']].copy()
+    data = data[['二級', 'town', 'name', 'rental_price', 'size', 'floor', 'address', 'longitude', 'latitude', 'type', 'house_age', 'MRT_within_1km',
+                 'Bus_within_1km', 'img_url', '餐廳餐館', '便利商店', '美容美髮服務', '日常用品零售', '飲料店業', '其他綜合零售']].copy()
     data = data.fillna('no data')
     if scores is not None:
         data['score'] = scores
@@ -90,12 +97,23 @@ def process_shop_data(data, scores=None):
 
     return data, response
 
+def get_all_wish_list(path):
+    ## get wish list
+    file_path = os.path.join(path, 'wish_list', 'wishlist.csv')
+    wish_list = pd.read_csv(file_path)
+    ## get embedding list
+    file_path = os.path.join(path, 'wish_list', 'wishlist_embedding.csv')
+    wish_embedding = pd.read_csv(file_path)
+
+    return wish_list, wish_embedding
 
 if __name__ == '__main__':
-    data = get_region_data('/home/jasonluo/Documents/competition/2022_interior_hackathon/data', town_name='松山區')
-    data = process_region_data(data)
+    pass
+    #data = get_region_data('/home/jasonluo/Documents/competition/2022_interior_hackathon/data', town_name='大安區', second_dis='A6303-18')
+    #data = process_region_data(data)
     #print(data)
-    data = get_shop_data('/home/jasonluo/Documents/competition/2022_interior_hackathon/data')
-    data, response = process_shop_data(data)
-    for item in response:
-        print(item['bus_stops'])
+    #data = get_shop_data('/home/jasonluo/Documents/competition/2022_interior_hackathon/data')
+    #data, response = process_shop_data(data)
+    #print(data)
+    get_all_wish_list('/home/jasonluo/Documents/competition/2022_interior_hackathon/data')
+

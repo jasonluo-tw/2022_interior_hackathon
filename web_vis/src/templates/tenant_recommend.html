@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css"/>
   </head>
   <body>
-    <div class="main" id="app">
+    <div class="main" id="app" v-cloak="v-cloak">
       <div class="mainbox">
         <div class="left">
           <!--.left_bar
@@ -29,7 +29,7 @@
                 <div class="c1 btn"><i class="user circle icon"></i></div>
               </div>
             </div>
-            <div class="bottom">
+            <div class="bottom" id="bottom_block">
               <div class="card" v-for="(item, cid) in shop" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)">
                 <div class="logo">
                   <!--img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")--><img v-bind:src="item.img_url"/>
@@ -49,6 +49,30 @@
                 </div>
               </div>
             </div>
+            <div class="bottom_detail"> 
+              <div class="left_detail">
+                <h3>{{clicked_item.name}}</h3>
+                <div class="img_block"><img v-bind:src="clicked_item.img_url"/></div>
+                <!--Should scroll-->
+                <div class="specail_detail"> 
+                  <h3>[特色]
+                    <!--.detail_text {{clicked_item.special}}-->
+                    <div class="detail_text">{{clicked_item.type}}</div>
+                  </h3>
+                  <h3>[其他資訊]
+                    <!--.detail_text {{clicked_item.other_info}}-->
+                    <div class="detail_text">{{clicked_item.floor}}</div>
+                  </h3>
+                </div>
+              </div>
+              <div class="right_detail"> 
+                <div class="price"> ${{clicked_item.rental_price}}/月</div>
+                <div class="detail_info">
+                  <p>哈拉哈拉</p>
+                </div>
+                <div class="close_detail" id="close_detail"><i class="angle double down icon"></i></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="right">
@@ -65,45 +89,64 @@
                 <h4>所在位置: {{town}}</h4>
               </div>
               <div class="chart_block">
-                <h4 class="title">土地使用</h4>
-                <div id="pie_chart"> </div>
+                <h4 class="title">店舖價走勢</h4>
+                <div id="line_chart"></div>
               </div>
               <div class="chart_block">
                 <h4 class="title">人流</h4>
                 <div id="bar_chart"></div>
               </div>
               <div class="chart_block">
-                <h4 class="title">房價走勢</h4>
-                <div id="line_chart"></div>
-              </div>
-              <div class="chart_block">
                 <h4 class="title">消費熱度指數</h4>
                 <div id="line_chart2"></div>
               </div>
+              <div class="location"> 
+                <h4>二級行政區: {{second_dis}}</h4>
+              </div>
+              <div class="chart_block">
+                <h4 class="title">土地使用</h4>
+                <div id="pie_chart"> </div>
+              </div>
               <div class="chart_block"> 
                 <h4 class="title">年齡分佈</h4>
-                <!-- This can be rendered by Vue-->
-                <div class="percent_block" id="year_1"><span>0-15歲</span><span class="right_text">%</span>
+                <div class="percent_block" id="year_1"><span>0-14歲</span><span class="right_text">%</span>
                   <div class="percent_bar">
                     <div class="bar"></div>
                   </div>
                 </div>
-                <div class="percent_block" id="year_2"><span>15-64歲</span><span class="right_text">%</span>
+                <div class="percent_block" id="year_2"><span>15-24歲</span><span class="right_text">%</span>
                   <div class="percent_bar">
                     <div class="bar"></div>
                   </div>
                 </div>
-                <div class="percent_block" id="year_3"><span>64-100歲</span><span class="right_text">%</span>
+                <div class="percent_block" id="year_3"><span>25-39歲</span><span class="right_text">%</span>
+                  <div class="percent_bar">
+                    <div class="bar"></div>
+                  </div>
+                </div>
+                <div class="percent_block" id="year_4"><span>40-64歲</span><span class="right_text">%</span>
+                  <div class="percent_bar">
+                    <div class="bar"></div>
+                  </div>
+                </div>
+                <div class="percent_block" id="year_5"><span>65歲以上</span><span class="right_text">%</span>
                   <div class="percent_bar">
                     <div class="bar"></div>
                   </div>
                 </div>
               </div>
+              <div class="location"> 
+                <h4>一公里內</h4>
+              </div>
               <div class="chart_block"> 
-                <h4 class="title">1公里內交通工具數量</h4>
+                <h4 class="title">同業種數量</h4>
+                <div id="shop_num"></div>
+              </div>
+              <div class="chart_block"> 
+                <h4 class="title">交通工具數量</h4>
                 <div id="text_chart"><i class="subway icon"> 
-                    <div class="icon_text">5</div></i><i class="bus icon"> 
-                    <div class="icon_text">10</div></i></div>
+                    <div class="icon_text">0</div></i><i class="bus icon"> 
+                    <div class="icon_text">0</div></i></div>
               </div>
             </div>
           </div>

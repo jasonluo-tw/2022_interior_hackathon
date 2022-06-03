@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title 商空月老
+        link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css")
+        link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css")
+        link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css")
+        link(rel="stylesheet" type="text/css" href="/static/basic.css")
+        link(rel="stylesheet" type="text/css" href="/static/style.css")
+    body
+        #app(v-cloak).main
+            .mainbox
+                .left
+                    //.left_bar
+                        .click_btn.ct1 改變需求
+                        .click_btn.ct2 上傳物件
+                    .right_box
+                        .top_bar
+                            .our_logo 
+                            h1.title 商空月老
+                            .buttons
+                                //.c1.btn 改變需求
+                                //.c1.btn 上傳物件
+                                .c1.btn.b1 我要找房
+                                .c1.btn.b2 我有房源
+                                .c1.btn
+                                    i.user.circle.icon
+                        .bottom
+                            .card(v-for="(item, cid) in shop" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)")
+                                .logo
+                                    //img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")
+                                    img(v-bind:src="item.img_url")
+                                .content
+                                    .info
+                                        p 出租物件名稱: {{item.name}}
+                                        p 物件類型: {{item.type}}
+                                        p 物件坪數：{{item.size}}
+                                    .scores
+                                        p 配對率:
+                                        .score {{item.score}}%
+                                    //h2.rental_price ${{item.price[0]}}~${{item.price[1]}}/月
+                                    h2.rental_price ${{item.rental_price}}/月
+
+                .right
+                    .info_bar
+                        .title
+                            h4 區域探索<br>AREA EXPLORER
+                            .close
+                                p <<
+                        hr
+                        .charts
+                            .location 
+                                h4 所在位置: {{town}}
+                            .chart_block
+                                h4.title 店舖價走勢
+                                #line_chart
+                            .chart_block
+                                h4.title 人流
+                                #bar_chart
+                            .chart_block
+                                h4.title 消費熱度指數
+                                #line_chart2
+
+                            .location 
+                                h4 二級行政區: {{second_dis}}
+                            .chart_block
+                                h4.title 土地使用
+                                #pie_chart 
+                            .chart_block 
+                                h4.title 年齡分佈
+                                #year_1.percent_block
+                                    span 0-14歲
+                                    span.right_text %
+                                    .percent_bar
+                                        .bar
+                                #year_2.percent_block
+                                    span 15-24歲
+                                    span.right_text %
+                                    .percent_bar
+                                        .bar
+                                #year_3.percent_block
+                                    span 25-39歲
+                                    span.right_text %
+                                    .percent_bar
+                                        .bar
+                                #year_4.percent_block
+                                    span 40-64歲
+                                    span.right_text %
+                                    .percent_bar
+                                        .bar
+                                #year_5.percent_block
+                                    span 65歲以上
+                                    span.right_text %
+                                    .percent_bar
+                                        .bar
+
+                            .location 
+                                h4 一公里內
+                            .chart_block 
+                                h4.title 同業種數量
+                                #shop_num
+                            .chart_block 
+                                h4.title 交通工具數量
+                                #text_chart
+                                    i.subway.icon 
+                                        .icon_text 0
+                                    i.bus.icon 
+                                        .icon_text 0
+
+
+
+                    #mapid.map
+    
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js")
+        script(src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js")
+        script(src="https://code.highcharts.com/highcharts.js")
+        script(src="/static/test_map.js")
+        script(src="/static/plot.js")

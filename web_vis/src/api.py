@@ -3,7 +3,8 @@ from flask import request, jsonify, url_for, redirect, session
 from flask_cors import cross_origin
 from py_utils.get_data import get_region_data, process_region_data
 from py_utils.get_data import get_shop_data, process_shop_data
-from py_utils.calculation import calculate_shop_similarity
+from py_utils.get_data import get_all_wish_list
+from py_utils.function import calculate_shop_similarity
 import yaml
 
 with open('./path.yaml', 'r') as f:
@@ -12,7 +13,7 @@ with open('./path.yaml', 'r') as f:
 @cross_origin()
 def get_region_info():
     args = request.args
-    data = get_region_data(config_path['data'], town_name=args['town'])
+    data = get_region_data(config_path['data'], town_name=args['town'], second_dis=args['second_dis'])
     response = process_region_data(data)
 
     return jsonify(response)
@@ -49,9 +50,34 @@ def confirm_landlord_login():
         data, response = process_shop_data(data)
         session.permanent = True
         session['landlord_houses_'+form['username']] = response
+        session['username'] = form['username']
         print(response)
         return redirect(url_for("landlord_page", username=form['username']))
     else:
         response = 'NoData'
         return jsonify(response)
 
+@cross_origin()
+def calculate_scores_wish_list():
+    ## Get the house index by user
+    form = request.form.to_dict()
+    username = session['username']
+    shop_items = session['landlord_page_'+username]
+    target_shop_item = shop_items[form['house_index']]
+    ## get shop embedding 
+    target_shop_embedding = get_shop_embedding(username, form['house_index'])
+    ##
+    wish_list, wish_embedding = get_all_wish_list(config_path['data'])
+
+    scores, index = calculate_shop_similarity(target_shop_embedding, wish_embedding)
+    ## Sorted
+    sorted_scores = scores[index]
+    sorted_wish_list = wish_list[index]
+    ## and return the sorted wish list
+
+    session['sorted_wish'] = wish_list[:10]
+
+    return redirect(url_for("", ))
+
+if __name__ == '__main__':
+    pass
