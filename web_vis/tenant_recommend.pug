@@ -6,8 +6,12 @@ html(lang="en")
         link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css")
         link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css")
         link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css")
+        // leaflet draw
+        link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css")
         link(rel="stylesheet" type="text/css" href="/static/basic.css")
-        link(rel="stylesheet" type="text/css" href="/static/style.css")
+        link(rel="stylesheet" type="text/css" href="/static/tenant_recommend/style.css")
+        link(rel="stylesheet" type="text/css" href="/static/leafletmap/map.css")
+        link(rel="stylesheet" type="text/css" href="/static/tenant_recommend/tenant_map_detail.css")
     body
         #app(v-cloak).main
             .mainbox
@@ -42,26 +46,47 @@ html(lang="en")
                                     //h2.rental_price ${{item.price[0]}}~${{item.price[1]}}/月
                                     h2.rental_price ${{item.rental_price}}/月
                         .bottom_detail 
-                            .left_detail
-                                h3 {{clicked_item.name}}
-                                .img_block
+                            .left_detail 
+                                h3 {{ clicked_item.name }}
+                                .circle_block 
+                                    .circle 
+                                    .circle 
+                                    .circle
+                                .img_block 
                                     img(v-bind:src="clicked_item.img_url")
-                                //Should scroll
-                                .specail_detail 
-                                    h3 [特色]
-                                        //.detail_text {{clicked_item.special}}
-                                        .detail_text {{clicked_item.type}}
-                                    h3 [其他資訊]
-                                        //.detail_text {{clicked_item.other_info}}
-                                        .detail_text {{clicked_item.floor}}
+                                    //img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")
 
+                                .special_detail
+                                    .content
+                                        h3.special_title.pad [特色]
+                                        .detail_text.pad {{clicked_item.feature}} 
+                                        .detail_text.pad 捷運站：
+                                        .detail_text.pad {{clicked_item.MRT_name}}
+                                        h3.special_title.pad [其他資訊]
+                                        .detail_text.pad 地址：{{clicked_item.address}}
+                                        .detail_text.pad {{clicked_item.feature2}}
                             .right_detail 
-                                .price  ${{clicked_item.rental_price}}/月
+                                .price_block
+                                    h1.price ${{clicked_item.rental_price}}/月
+                                    .bottom_bar
                                 .detail_info
-                                    p 哈拉哈拉
-                                #close_detail.close_detail
-                                    i.angle.double.down.icon
-                                    
+                                    .content
+                                        .detail_text.pad 坪數：{{clicked_item.size}}坪
+                                        .detail_text.pad 樓層：{{clicked_item.floor}}
+                                        .detail_text.pad 建物總樓層：{{clicked_item.floor_b}}
+                                        .detail_text.pad 物件類型：{{clicked_item.type}}
+                                        .detail_text.pad 押金限制：{{clicked_item['押金']}}
+                                        .detail_text.pad 管理費：{{clicked_item['管理費']}}
+                                        .detail_text.pad 租約：{{clicked_item['租約']}}
+                                        .detail_text.pad 縣市：台北市
+                                        .detail_text.pad 鄉鎮市區：{{clicked_item.town}}
+                                        .detail_text.pad 屋齡：{{clicked_item.house_age}}
+                                        .detail_text.pad 裝潢：{{clicked_item['裝潢']}}
+                                        .detail_text.pad 是否有停車位：{{clicked_item['車位']}}
+                                        .detail_text.pad 距離大眾運輸： {{clicked_item.MRT_distance}}
+                                        .detail_text.pad 店面位置： {{clicked_item['小巷0/大路1']}}
+                                #close_detail.close_detail 
+                                    i.angle.double.down.icon 
 
                         
                 .right
@@ -139,6 +164,9 @@ html(lang="en")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js")
         script(src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js")
+        // leaflet.draw
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js")
         script(src="https://code.highcharts.com/highcharts.js")
-        script(src="/static/test_map.js")
+        script(src="/static/leafletmap/map_dev.js")
+        script(src="/static/tenant_recommend/tenant_recommend.js")
         script(src="/static/plot.js")

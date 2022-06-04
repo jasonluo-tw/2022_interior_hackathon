@@ -7,7 +7,9 @@ html(lang="en")
         link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css")
         link(rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css")
         link(rel="stylesheet" type="text/css" href="/static/basic.css")
-        link(rel="stylesheet" type="text/css" href="/static/style.css")
+        link(rel="stylesheet" type="text/css" href="/static/landlord_recommend/style.css")
+        // for bottom detail
+        link(rel="stylesheet" type="text/css" href="/static/landlord_recommend/bottom_detail.css")
     body
         #app(v-cloak).main
             .mainbox
@@ -41,6 +43,64 @@ html(lang="en")
                                         .score {{item.score}}%
                                     //h2.rental_price ${{item.price[0]}}~${{item.price[1]}}/月
                                     h2.rental_price ${{item.rental_price}}/月
+                        .content 
+                            .wish_box
+                                .box 
+                                    img.need-img(src="/static/landlord_recommend/img/need-img.png")
+                                    img.dot-img(src="/static/landlord_recommend/img/dot-img.png")
+                                    .match 
+                                        p.text 77% Match 
+                                        img.match_line-img(src="/static/landlord_recommend/img/match_line-img.png")
+                                    .wish_data 
+                                        table 
+                                            tr 
+                                                td.text#county 縣市:
+                                                td.text 台北市
+                                            tr 
+                                                td.text#town 鄉鎮市區:
+                                                td.text 信義區
+                                            tr 
+                                                td.text#type 物件類型:
+                                                td.text 電梯大樓
+                                            tr 
+                                                td.text#price 價位:
+                                                td.text 20001-40000元
+                                            tr 
+                                                td.text#area 坪數大小:
+                                                td.text 11-20坪
+                                            tr 
+                                                td.text#trans 距離大眾運輸:
+                                                td.text 500m以內
+                                            tr 
+                                                td.text#age 周圍年齡層:
+                                                td.text 25-39歲
+                                            tr 
+                                                td.text#loc 店面位置:
+                                                td.text 巷/弄
+                                            tr 
+                                                td.text#house_age 屋齡
+                                                td.text 10-20年
+                                            tr 
+                                                td.text#special 特色物件
+                                                td.text 否
+                                        .other_text 
+                                            p.text 其他需求:
+                                            p.text#other_request 希望沒有裝潢，牆壁可釘棚架可以鑽孔，尤其不要有壁癌滲水的狀況，要有大面的玻璃窗，最好是落地窗，可以清楚看到店內狀況，白天採光良好....
+                            .wisher_box 
+                                .box 
+                                    img.wisher-img(src="/static/landlord_recommend/img/wisher-img.png")
+                                    p.text 許願者資料
+                                    table.wisher_data 
+                                        tr 
+                                            td.text 姓名:
+                                            td.text XXX 
+                                        tr 
+                                            td.text 聯絡電話:
+                                            td.text 0933456934
+                                        tr 
+                                            td.text 聯絡信箱:
+                                            td.text databreath987@gmail.com
+
 
                 .right
                     .info_bar
@@ -117,5 +177,5 @@ html(lang="en")
         script(src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js")
         script(src="https://code.highcharts.com/highcharts.js")
-        script(src="/static/test_map.js")
+        script(src="/static/landlord_recommend/landlord_recommend.js")
         script(src="/static/plot.js")
