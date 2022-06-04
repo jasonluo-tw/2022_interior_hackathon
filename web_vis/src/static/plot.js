@@ -156,9 +156,7 @@ function plot_traffic_nums(dom_id, child_dom, total_nums) {
 
 function plot_shop_nums(dom_id, shop_data, shop_list) {
   const shop_node = document.getElementById(dom_id)
-  console.log(shop_node)
   shop_node.innerHTML = ""
-  console.log("hello")
   for(let i=0; i<shop_list.length; i++){
     let shop_name = shop_list[i]
     let shop_nums = shop_data[shop_name]

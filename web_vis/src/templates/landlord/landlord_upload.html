@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> 商空月老</title>
+    <link rel="stylesheet" href="/static/landlord_upload/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+
+  <body>
+    
+    <!------------------top bar------------------>
+    <div class="top-bar"> 
+      <img class="logo-img" src="/static/landlord_upload/img/logo-img.png" alt="">
+      <img class="logo-text" src="/static/ladnlord_upload/img/project-name.png" alt="" width="180" >
+      <div class="top-btn">
+        <button type="button" class="index-btn" id="rent" href="">我要租房</a>
+        <button type="button" class="index-btn" id="landlord" href="">我有房源</a>
+      </div>
+      <img class="user" src="/static/landlord_upload/img/user.png" alt="" width="180" >
+    </div>
+    <!------------------line------------------>
+    <hr class="top-line">
+    <!------------------content------------------>
+    <div class="content">
+      <!------------------table------------------>
+      <div class="data_table" >
+        <div class="table-left">
+          <table>
+            <tr>
+              <td class="text">物件名稱</td>
+              <td><input class="row_input" type="text" id="item_name"></td>
+            </tr>
+              <tr>
+                <td class="text">價位</td>
+                <td><input class="row_input" type="text" id="price"></td>
+              </tr>
+              <tr>
+                <td class="text">坪數大小</td>
+                <td><input class="row_input" type="text" id="area"></td>
+              </tr>
+              <tr>
+                <td class="text">屋齡</td>
+                <td><input class="row_input" type="text" id="house_age"></td>
+              </tr>
+              <tr>
+                <td class="text">所在樓層</td>
+                <td><input class="row_input" type="text" id="loc_floor"></td>
+              </tr>
+              <tr>
+                <td class="text">總樓層</td>
+                <td><input class="row_input" type="text" id="total_floor"></td>
+                <tr>
+                  <td class="text">押金</td>
+                  <td><input class="row_input" type="text" id="deposit"></td>
+                </tr>
+              </tr>
+          </table>
+        </div>
+        <div class="table-right">
+          <table>
+            <tr>
+              <td class="text">縣市</td>
+              <td>
+                <div class="dropdown">
+                  <select class="selected" name="county" id="county">
+                    <option value=""></option>
+                    <option value="taipei" id="taipei">台北市</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr>
+                <td class="text">鄉鎮市區</td>
+                <td>
+                  <div class="dropdown">
+                    <select class="selected" name="town" id="town" >
+                      <option value=""></option>
+                      <option value="shilin" id="shilin">士林區</option>
+                      <option value="datong" id="datong">大同區</option>
+                      <option value="daan" id="daan">大安區</option>
+                      <option value="zhongshan" id="zhongshan">中山區</option>
+                      <option value="zhongzheng" id="zhongzheng">中正區</option>
+                      <option value="neihu" id="neihu">內湖區</option>
+                      <option value="wenshan" id="wenshan">文山區</option>
+                      <option value="beitou" id="beitou">北投區</option>
+                      <option value="songshan" id="songshan">松山區</option>
+                      <option value="xinyi" id="xinyi">信義區</option>
+                      <option value="nangang" id="nangang">南港區</option>
+                      <option value="wanhua" id="wanhua">萬華區</option>
+                    </select>
+                  </div>
+                </td>
+            </tr>
+            <tr>
+              <td class="text">物件類型</td>
+              <td>
+                <div class="dropdown">
+                  <select class="selected" name="town" id="town">
+                    <option class="" value=""></option>
+                    <option value="apartment" id="apartment">公寓</option>
+                    <option value="villa" id="villa">別墅</option>
+                    <option value="mansion" id="mansion">電梯大樓</option>
+                    <option value="store" id="store">店面</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text">特色物件</td>
+              <td>
+                <div class="dropdown">
+                  <select class="selected" name="town" id="town">
+                    <option class="" value=""></option>
+                    <option value="specila_yes" id="specila_yes">是</option>
+                    <option value="specila_no" id="specila_no">否</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text">裝潢等級</td>
+              <td>
+                <div class="dropdown">
+                  <select class="selected" name="town" id="decorate">
+                    <option class="" value=""></option>
+                    <option value="dec_no" id="dec_no">無裝潢</option>
+                    <option value="dec_simple" id="dec_simple">簡易</option>
+                    <option value="dec_mid" id="dec_mid">中檔</option>
+                    <option value="dec_advanced" id="dec_advanced">高檔</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text">稱呼</td>
+              <td><input class="row_input" type="text" id="name"></td>
+            </tr>
+            <tr>
+              <td class="text">聯絡電話</td>
+              <td><input class="row_input" type="text" id="phone"></td>
+            </tr>
+            <tr>
+              <td class="text">聯絡email</td>
+              <td><input class="row_input" type="text" id="mail"></td>
+            </tr>
+          </table>
+        </div>
+        <p class="request_text">特色&其他</p>
+        <textarea name="need" id="other_request" cols="30" rows="10"></textarea>
+      </div>
+      <!------------------upload btn------------------>
+      <button type="button" class="go-btn" id="upload">上傳</button>
+    <!------------------upload success------------------>
+    <div class="upload_success">
+      <div class="success_box">
+        <img class="success_text" src="/static/landlord_upload/success_text.png" alt="">
+        <div class="upload_s_btn" >
+          <button class="s_btn" id="upload_other" type="button">上傳其他</button>
+          <button class="s_btn" id="done" type="button">完成</button>
+        </div>
+      </div>
+    </div>
+    
+
+  </div>
+
+  
+
+    
+   
+
+  </body>
+
+</html>

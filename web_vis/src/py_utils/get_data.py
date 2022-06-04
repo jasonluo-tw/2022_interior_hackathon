@@ -83,9 +83,12 @@ def get_shop_data(path):
     return data
 
 def process_shop_data(data, scores=None):
-    data = data[['house_index', '二級', 'town', 'name', 'rental_price', 'size', 'floor', 'address', 'longitude', 'latitude', 'type', 'house_age', 'MRT_within_1km',
-                 'Bus_within_1km', 'img_url', '餐廳餐館', '便利商店', '美容美髮服務', '日常用品零售', '飲料店業', '其他綜合零售']].copy()
+    data = data
+    #data = data[['house_index', '二級', 'town', 'name', 'rental_price', 'size', 'floor', 'address', 'longitude', 'latitude', 'type', 'house_age', 'MRT_within_1km',
+    #             'Bus_within_1km', 'img_url', '餐廳餐館', '便利商店', '美容美髮服務', '日常用品零售', '飲料店業', '其他綜合零售']].copy()
     data = data.fillna('no data')
+    data['house_index'] = data['house_index'].astype('str')
+
     if scores is not None:
         data['score'] = scores
 

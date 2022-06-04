@@ -1,0 +1,96 @@
+.bottom_detail {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  padding-top: 10px;
+}
+.bottom_detail .detail_text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.bottom_detail .pad {
+  padding: 5px;
+  padding-left: 10px;
+}
+.bottom_detail .left_detail {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  height: 100%;
+  width: 60%;
+}
+.bottom_detail .left_detail h3 {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+.bottom_detail .left_detail .circle_block .circle {
+  width: 10px;
+  height: 10px;
+  background-color: #6462f5;
+  border-radius: 50%;
+  display: inline-block;
+}
+.bottom_detail .left_detail .img_block {
+  border: 1px solid black;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.bottom_detail .left_detail .img_block img {
+  width: 100%;
+}
+.bottom_detail .left_detail .special_detail {
+  background-color: #b0ceff;
+  width: 100%;
+  overflow: scroll;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.bottom_detail .left_detail .special_detail .content {
+  margin-top: 20px;
+  margin-left: 5px;
+}
+.bottom_detail .left_detail .special_detail h3 {
+  color: white;
+}
+.bottom_detail .right_detail {
+  position: relative;
+  width: 45%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.bottom_detail .right_detail .price_block {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.bottom_detail .right_detail .price_block h1.price {
+  margin-bottom: 0;
+}
+.bottom_detail .right_detail .price_block .bottom_bar {
+  height: 10px;
+  background-color: #4de3eb;
+  border-radius: 10px;
+}
+.bottom_detail .right_detail .detail_info {
+  background-color: white;
+  height: 80%;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.bottom_detail .right_detail .detail_info .content {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+.bottom_detail .right_detail .close_detail {
+  position: absolute;
+  display: inline-block;
+  font-size: 20px;
+  border-radius: 5px;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.bottom_detail .right_detail .close_detail:hover {
+  background-color: #f0f0f0;
+}

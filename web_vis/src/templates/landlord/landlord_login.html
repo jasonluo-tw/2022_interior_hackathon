@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>商空月老</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="/static/basic.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/landlord_login/landlord_login.css"/>
+    -->
+    <link rel="stylesheet" href="/static/landlord_login/style.css">
+  </head>
+  <body> 
+    <!------------------top bar------------------>
+    <div id="navi_bar"> 
+        <div class="top_bar">
+            <img class="logo-text" src="/static/landlord_login/img/project-name.png" alt="" width="250" >
+            <div class="top-btn">
+                <button type="button" class="index-btn" id="rent" href="">我要租房</a>
+                <button type="button" class="index-btn" id="landlord" href="">我有房源</a>
+            </div>
+            <img class="user" src="/static/landlord_login/img/user.png" alt="" width="180">
+        </div>
+    </div>
+    <!------------------line------------------>
+    <hr class="top-line">
+    <!------------------content------------------>
+    <div class="main"> 
+      <form action="http://127.0.0.1:5000/api/login_confirm" method="post">
+        <div class="block">
+          <table class="log_in">
+            <tr>
+              <td class="text">帳號</td>
+              <td class="user_input">
+                <input class="user" type="text" name="username" placeholder="輸入數字"/>
+              </td>
+            </tr>
+            <tr>
+              <td class="text">密碼</td>
+              <td class="user_input">
+                <input class="user" type="text" name="password" placeholder="不用打"/>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <button class="buttons_btn">登入</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,210 @@
+body{
+    font-family: 'Noto Sans TC', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+/*--------------- map ---------------*/
+
+
+.right_map{
+    position: absolute;
+    height: 100vh;
+    width: 55%;
+    background-color: blanchedalmond;
+    right: 0;
+
+
+}
+
+/*--------------- top bar ---------------*/
+.top-bar{
+    position: absolute;
+    background:white;
+    width: 45%;
+    height: 70px;
+    
+}
+  
+.logo-img{
+    position: absolute;
+    width: 55px;
+    top: 8px;
+    left: 10px;
+}
+  
+.top-bar .logo-text{
+    position: absolute;
+    padding-left:80px;
+    padding-top: 20px;
+}
+  
+.top-bar .top-btn{
+    padding-top: 20px;
+    padding-left: 280px;
+}
+  
+.top-bar .index-btn {
+    left: 30px;
+    padding: 2px 10px;
+    margin: 0px 3px;
+    background-color: white;
+    border-radius: 20px;
+    border: solid 2px;
+    border-color:rgba(0,0,0,0);
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 600;
+    text-decoration: none;  
+}
+  
+.top-bar .index-btn:hover {
+    border-color:rgba(0,0,0,1);
+    transition: 0.7s;
+}
+  
+.top-bar .user{
+    position: fixed;
+    left: 40vw;
+    top: 15px;
+    width: 45px;
+}
+  
+.top-line{
+    position: absolute;
+    top: 70px;
+    border-width: 2px 0 0 0;
+    border-style: solid;
+    border-color: black;
+    margin: 0;
+    width: 45%;
+} 
+
+/*--------------- content ---------------*/
+
+.content{
+    display:flex;
+    left: 0;
+    bottom: 0;
+    flex-direction: column;
+    padding: 0;
+    height: 100vh;
+    background-image:url("img/background-img.png");
+    background-size: 120vw;
+    background-repeat: no-repeat;
+}
+
+/*--------------- wish box ---------------*/
+.wish_box .box{
+    position: absolute;
+    left: 2.5vw;
+    top: 90px;
+    width: 40vw;
+    height: 55vh;
+    background: rgba(87,101,153,0.7);
+    border: solid 3px #99FFDA;
+    border-radius: 20px;
+}
+
+.need-img{
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    width: 20vw;
+}
+
+.dot-img{
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    width: 3vw;
+}
+
+.match{
+    position: absolute;
+    top: 3vh;
+    right: 1vw;
+}
+
+.match .text{
+    font-size: 28px;
+    font-weight: 600;
+    color: #99FFDA;
+}
+
+.match_line-img{
+    top: 9vh;
+    position: absolute;
+    width: 12vw;
+}
+
+.wish_data{
+    position: absolute;
+    left: 1vw;
+    top: 18vh;
+    width: 37vw;
+}
+
+.wish_data .text{
+    color:white;
+    font-weight: 200;
+    font-size: 14px;
+}
+
+td{
+    padding: 0.2vh 1vw ;
+}
+
+.other_text{
+    position: absolute;
+    top: -1vw;
+    right: 0;
+    max-width: 16vw;
+    max-height: 35vh;
+    overflow-y: scroll;
+}
+.other_text::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
+
+/*--------------- wisher box ---------------*/
+.wisher_box .box{
+    position: absolute;
+    left: 2.5vw;
+    top: 72vh;
+    width: 40vw;
+    height: 18vh;
+    background: rgba(255,255,255,0.7);
+    border: solid 3px #576599;
+    border-radius: 20px;
+}
+
+.wisher-img{
+    position:absolute;
+    left: 1vw;
+    top: 2.5vh;
+    width: 12vw;
+    border: solid 2px #576599;
+    border-radius: 10px;
+}
+
+.wisher_box .text{
+    color:#576599;
+    font-weight: 400;
+    font-size: 14px;
+
+}
+
+.wisher_box p{
+    position: absolute;
+    left: 15vw;
+    top: 0vh;
+}
+
+.wisher_data{
+    position: absolute;
+    top: 6vh;
+    left: 14vw;
+}

@@ -58,7 +58,7 @@ body{
     flex-direction: column;
     padding: 0;
     height: 92.5vh;
-    background-image:url("../images/background-img.png"),linear-gradient(rgba(255, 255, 255, 0.5) ,rgba(112,112,112,0.5));
+    background-image:url("img/background-img.png"),linear-gradient(rgba(255, 255, 255, 0.5) ,rgba(112,112,112,0.5));
     background-size: 100%;
     background-repeat: no-repeat;
 

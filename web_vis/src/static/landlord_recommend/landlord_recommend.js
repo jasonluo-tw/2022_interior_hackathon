@@ -14,8 +14,12 @@ var shop_list
 initVue()
 initMap()
 
-// test block
-fetch('http://127.0.0.1:5000/api/get_shop_info',  {
+// Get query from URL
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+console.log(urlParams.get('house_index'))
+const api_path = 'http://127.0.0.1:5000/api/calculate_similar?house_index='+urlParams.get('house_index')
+fetch(api_path,  {
     headers: {
         'Content-Type': 'application/json'
     },

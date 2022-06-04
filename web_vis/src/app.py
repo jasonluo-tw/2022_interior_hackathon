@@ -14,31 +14,51 @@ with open('./path.yaml', 'r') as f:
     config_path = yaml.safe_load(f)
 
 ## router
+## index
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/landlord/login")
+###########
+## tenant webpage
+###########
+@app.route(config_path['tenant']['tenant'][0])
+def tenant():
+    return render_template(config_path['tenant']['tenant'][1])
+
+@app.route(config_path['tenant']['wish_upload'][0])
+def tenant_wish_upload():
+    return render_template(config_path['tenant']['wish_upload'][1])
+
+@app.route(config_path['tenant']['map'][0])
+def tenant_map():
+    return app.send_static_file(config_path['tenant']['map'][1])
+
+
+###########
+## landlord
+###########
+@app.route(config_path['landlord']['login'][0])
 def landlord_login():
-    return render_template("landlord_login.html")
+    return render_template(config_path['landlord']['login'][1])
 
-
-@app.route("/landlord/page/<username>")
+@app.route(config_path['landlord']['portal'][0])
 def landlord_page(username):
     try:
         response = session['landlord_houses_'+username]
-        return render_template(f"landlord_page.html", username=username, house_infos=response)
-    except:
+        return render_template(config_path['landlord']['portal'][1], username=username, house_infos=response)
+    except Exception as e:
+        print(e)
         return "Please login again"
 
-#@app.route("/landlord/map/<username>")
-#def landlord_map():
-    #
-    #return render_template(f"")
+@app.route(config_path['landlord']['upload'][0])
+def landlord_upload():
+    return render_template(config_path['landlord']['upload'][1])
 
-@app.route("/tenant/map")
-def tenant_map():
-    return app.send_static_file("tenant_recommend.html")
+@app.route(config_path['landlord']['map'][0])
+def landlord_map():
+    return app.send_static_file(config_path['landlord']['map'][1])
+    
 
 ## API 
 app.add_url_rule('/api/get_region_info', view_func=api.get_region_info, methods=['GET'])
@@ -51,10 +71,11 @@ app.add_url_rule('/api/calculate_similar',
 if __name__ == '__main__':
     app.config['JSON_AS_ASCII'] = False
     app.secret_key = "sjefkl;ajeske;fjaslkejgalsejg"
-    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
-    #app.static_url_path = "/home/jasonluo/Documents/competition/2022_interior_hackathon/web_vis/dist/"
-    #app.static_folder = "/home/jasonluo/Documents/competition/2022_interior_hackathon/web_vis/dist/"
-    #app.root_path = "/home/jasonluo/Documents/competition/2022_interior_hackathon/web_vis/dist/"
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
+
+    #app.static_url_path = ""
+    #app.static_folder = ""
+    #app.root_path = ""
     #print(app.root_path)
     #print(app.static_url_path)
     #print(app.static_folder)

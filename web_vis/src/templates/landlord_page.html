@@ -41,6 +41,7 @@
           <div class="house">
             {% for house_info in house_infos %}
               <div class="house_card">
+                <a href={{ "../map?house_index="+house_info['house_index'] }}>WishList Search</a>
                 <h5 class="title"> {{ house_info['name'] }}</h3>
                 <div class="image">
                   <img src={{ house_info['img_url'] }}>

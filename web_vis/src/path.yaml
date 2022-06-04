@@ -1,1 +1,15 @@
 data: /home/jasonluo/Documents/competition/2022_interior_hackathon/data
+
+landlord:
+
+tenant:
+  tenant: ['/tenant/', 'tenant/tenant.html']
+  wish_upload: ['/tenant/wish_upload/', 'tenant/tenant_wish_upload.html']
+  map: ['/tenant/map', 'tenant_recommend.html']
+
+landlord:
+  login: ['/landlord/login/', 'landlord/landlord_login.html']
+  portal: ['/landlord/portal/<username>', 'landlord_page.html']
+  upload: ['/landlord/upload/', 'landlord/landlord_upload.html']
+  map: ['/landlord/map', 'landlord_recommend.html']
+

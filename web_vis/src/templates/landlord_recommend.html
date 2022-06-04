@@ -7,7 +7,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css"/>
     <link rel="stylesheet" type="text/css" href="/static/basic.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/landlord_recommend/style.css"/>
+    <!-- for bottom detail-->
+    <link rel="stylesheet" type="text/css" href="/static/landlord_recommend/bottom_detail.css"/>
   </head>
   <body>
     <div class="main" id="app" v-cloak="v-cloak">
@@ -46,6 +48,82 @@
                   </div>
                   <!--h2.rental_price ${{item.price[0]}}~${{item.price[1]}}/月-->
                   <h2 class="rental_price">${{item.rental_price}}/月</h2>
+                </div>
+              </div>
+            </div>
+            <div class="content"> 
+              <div class="wish_box">
+                <div class="box"> <img class="need-img" src="/static/landlord_recommend/img/need-img.png"/><img class="dot-img" src="/static/landlord_recommend/img/dot-img.png"/>
+                  <div class="match"> 
+                    <p class="text">77% Match </p><img class="match_line-img" src="/static/landlord_recommend/img/match_line-img.png"/>
+                  </div>
+                  <div class="wish_data"> 
+                    <table> 
+                      <tr> 
+                        <td class="text" id="county">縣市:</td>
+                        <td class="text">台北市</td>
+                      </tr>
+                      <tr> 
+                        <td class="text" id="town">鄉鎮市區:</td>
+                        <td class="text">信義區</td>
+                      </tr>
+                      <tr> 
+                        <td class="text" id="type">物件類型:</td>
+                        <td class="text">電梯大樓</td>
+                      </tr>
+                      <tr> 
+                        <td class="text" id="price">價位:</td>
+                        <td class="text">20001-40000元</td>
+                      </tr>
+                      <tr> 
+                        <td class="text" id="area">坪數大小:</td>
+                        <td class="text">11-20坪</td>
+                      </tr>
+                      <tr> 
+                        <td class="text" id="trans">距離大眾運輸:</td>
+                        <td class="text">500m以內</td>
+                      </tr>
+                      <tr> 
+                        <td class="text" id="age">周圍年齡層:</td>
+                        <td class="text">25-39歲</td>
+                      </tr>
+                      <tr> 
+                        <td class="text" id="loc">店面位置:</td>
+                        <td class="text">巷/弄</td>
+                      </tr>
+                      <tr> 
+                        <td class="text" id="house_age">屋齡</td>
+                        <td class="text">10-20年</td>
+                      </tr>
+                      <tr> 
+                        <td class="text" id="special">特色物件</td>
+                        <td class="text">否</td>
+                      </tr>
+                    </table>
+                    <div class="other_text"> 
+                      <p class="text">其他需求:</p>
+                      <p class="text" id="other_request">希望沒有裝潢，牆壁可釘棚架可以鑽孔，尤其不要有壁癌滲水的狀況，要有大面的玻璃窗，最好是落地窗，可以清楚看到店內狀況，白天採光良好....</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="wisher_box"> 
+                <div class="box"> <img class="wisher-img" src="/static/landlord_recommend/img/wisher-img.png"/>
+                  <p class="text">許願者資料</p>
+                  <table class="wisher_data"> 
+                    <tr> 
+                      <td class="text">姓名:</td>
+                      <td class="text">XXX </td>
+                    </tr>
+                    <tr> 
+                      <td class="text">聯絡電話:</td>
+                      <td class="text">0933456934</td>
+                    </tr>
+                    <tr> 
+                      <td class="text">聯絡信箱:</td>
+                      <td class="text">databreath987@gmail.com</td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
@@ -135,7 +213,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="/static/test_map.js"></script>
+    <script src="/static/landlord_recommend/landlord_recommend.js"></script>
     <script src="/static/plot.js"></script>
   </body>
 </html>
