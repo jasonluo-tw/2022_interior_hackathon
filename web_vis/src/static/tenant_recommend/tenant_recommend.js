@@ -2,7 +2,9 @@ var mymap
 var vm
 var card_over
 var shop_list
-var selectedCard = null 
+var selectedCard = null
+var root = location.protocol + '//' + location.host;
+
 initVue()
 
 //initMap()
@@ -16,7 +18,12 @@ L.control.zoom({
 }).addTo(mymap.basemap)
 
 // Get shop_info mation
-fetch('http://127.0.0.1:5000/api/get_shop_info',  {
+// Get query from URL
+const queryString = window.location.search
+const api_path = root + '/api/get_shop_info' + queryString
+//console.log(api_path)
+
+fetch(api_path,  {
     headers: {
         'Content-Type': 'application/json'
     },
@@ -79,7 +86,7 @@ function cardClick (index) {
     $("#bottom_block").css("height", 0)
 
     // fetch region information
-    let api_url = 'http://127.0.0.1:5000/api/get_region_info?town='+clicked_town+'&second_dis='+clicked_second
+    let api_url = root + '/api/get_region_info?town='+clicked_town+'&second_dis='+clicked_second
     vm['town'] = clicked_town
     vm['second_dis'] = clicked_second
     fetch(api_url, {

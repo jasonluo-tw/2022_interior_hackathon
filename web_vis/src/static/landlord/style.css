@@ -1,0 +1,107 @@
+body{
+  font-family: 'Noto Sans TC', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/*--------------- top bar ---------------*/
+.top-bar{
+  background: white;
+  height: 70px;
+}
+.logo-img{
+  position: absolute;
+  width: 55px;
+  top: 8px;
+  left: 10px;
+}
+
+.logo-text{
+  position: absolute;
+  padding-left:80px;
+  padding-top: 20px;
+}
+
+.top-btn{
+  padding-top: 20px;
+  padding-left: 280px;
+}
+
+.index-btn {
+  left: 30px;
+  padding: 2px 10px;
+  margin: 0px 3px;
+  background-color: white;
+  border-radius: 20px;
+  border: solid 2px;
+  border-color:rgba(0,0,0,0);
+  color: black;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  
+}
+
+.index-btn:hover {
+  border-color:rgba(0,0,0,1);
+  transition: 0.7s;
+}
+
+.user{
+  position: fixed;
+  right: 3vw;
+  top: 15px;
+  width: 45px;
+}
+
+.top-line{
+  border-width: 2px 0 0 0;
+  border-style: solid;
+  border-color: black;
+  margin: 0;
+}  
+
+/*--------------- content ---------------*/
+.content{
+  display:flex;
+  flex-direction: column;
+  padding: 0;
+  height: 92.5vh;
+  background-image:url("img/background-img.png"),linear-gradient(rgba(255, 255, 255, 0.5) ,rgba(112,112,112,0.5));
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+/*--------------- go btn ---------------*/
+
+.go-btn{
+  position: absolute;
+  left: 81vw;
+  border-radius: 30px;
+  border: solid 3px black;
+  background-color: white;
+  color: black;
+  width: 10vw;
+  height: 40px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.go-btn:hover{
+  box-shadow:  8px 8px #576599;
+  transform: translateX(-5px) translateY(-5px);
+  transition: 0.3s;
+}
+
+#match{
+  top: 45.5vh;
+}
+
+#upload{
+  top: 72.5vh;
+}

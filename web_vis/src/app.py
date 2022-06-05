@@ -38,6 +38,10 @@ def tenant_map():
 ###########
 ## landlord
 ###########
+@app.route(config_path['landlord']['landlord'][0])
+def landlord():
+    return render_template(config_path['landlord']['landlord'][1])
+
 @app.route(config_path['landlord']['login'][0])
 def landlord_login():
     return render_template(config_path['landlord']['login'][1])
@@ -66,6 +70,8 @@ app.add_url_rule('/api/get_shop_info', view_func=api.get_shop_info, methods=['GE
 app.add_url_rule('/api/login_confirm', view_func=api.confirm_landlord_login, methods=['POST'])
 app.add_url_rule('/api/calculate_similar',
                  view_func=api.calculate_scores_wish_list, methods=['GET'])
+
+app.add_url_rule('/api/store_wish', view_func=api.store_tenant_wish, methods=['POST'])
 
 
 if __name__ == '__main__':

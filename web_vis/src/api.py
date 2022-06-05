@@ -1,10 +1,11 @@
-from tkinter import W
 from flask import request, jsonify, url_for, redirect, session
 from flask_cors import cross_origin
 from py_utils.get_data import get_region_data, process_region_data
 from py_utils.get_data import get_shop_data, process_shop_data
 from py_utils.get_data import get_all_wish_list, get_shop_embedding
 from py_utils.function import calculate_shop_similarity
+from py_utils.function import filter_shops_by_smart, filter_shops_by_options
+from py_utils.store_data import store_wishlist
 import yaml
 
 with open('./path.yaml', 'r') as f:
@@ -22,16 +23,25 @@ def get_region_info():
 @cross_origin()
 def get_shop_info():
     args = request.args
-    
     data = get_shop_data(config_path['data'])
-    ##TODO: calculate
-    #scores = calculate_shop_similarity(data)
+
+    ##TODO: filtering
+    scores = None
+    ## smart search
+    if 'smart' in args.to_dict():
+        dicts = args.to_dict()
+        data, scores = filter_shops_by_smart(data, dicts['smart'])
+    ## general filter
+    elif 'county' in args.to_dict():
+        dicts = args.to_dict()
+        data = filter_shops_by_options(data, dicts)
+    
+    ## get top N items
     if 'counts' in args.to_dict():
         data = data.iloc[:int(args['counts'])]
-        #scores = scores[:int(args['counts'])]
 
     ## process_shop_data
-    data, response = process_shop_data(data, scores=None)
+    data, response = process_shop_data(data, scores=scores)
 
     return jsonify(response)
 
@@ -49,6 +59,7 @@ def confirm_landlord_login():
         data, response = process_shop_data(data)
         session.permanent = True
         ## Store data to cookie
+        session.clear()
         session['landlord_houses_'+form['username']] = response
         session['username'] = form['username']
         #print(response)
@@ -99,6 +110,17 @@ def calculate_scores_wish_list():
     top_10_wish = list(top_10_wish.to_dict('index').values())
 
     #return response
+    return jsonify(response)
+
+#@cross_origin()
+def store_tenant_wish():
+    form = request.form.to_dict()
+    try:
+        store_wishlist(config_path['data'], form)
+        response = 'success'
+    except:
+        response = 'failure'
+
     return jsonify(response)
 
 if __name__ == '__main__':

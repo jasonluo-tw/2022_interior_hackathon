@@ -30,199 +30,230 @@
       <div class="box"></div>
       <img class="wish-img" src="/static/tenant_wish_upload/img/wish.png" alt="" >
       <!------------------table------------------>
-      <div class="data_table" >
-        <div class="table-left">
-          <table>
-            <tr>
-              <td class="text">稱呼</td>
-              <td><input class="row_input" type="text" id="name"></td>
-            </tr>
-            <tr>
-              <td class="text">聯絡電話</td>
-              <td><input class="row_input" type="text" id="phone"></td>
-            </tr>
-            <tr>
-              <td class="text">聯絡email</td>
-              <td><input class="row_input" type="text" id="mail"></td>
-            </tr>
-            <tr>
-              <td class="text">縣市</td>
-              <td>
-                <div class="dropdown">
-                  <select class="selected" name="county" id="county">
-                    <option value=""></option>
-                    <option value="taipei" id="taipei">台北市</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
+      <form action="http://127.0.0.1:5000/api/store_wish" method="post">
+        <div class="data_table" >
+          <div class="table-left">
+            <table>
               <tr>
-                <td class="text">鄉鎮市區</td>
+                <td class="text">稱呼</td>
+                <td><input class="row_input" name="name" id="name"></td>
+              </tr>
+              <tr>
+                <td class="text">聯絡電話</td>
+                <td><input class="row_input" name="phone" id="phone"></td>
+              </tr>
+              <tr>
+                <td class="text">聯絡email</td>
+                <td><input class="row_input" name="email" id="email"></td>
+              </tr>
+              <tr>
+                <td class="text">縣市</td>
                 <td>
                   <div class="dropdown">
-                    <select class="selected" name="town" id="town" >
+                    <select class="selected" name="county" id="county">
                       <option value=""></option>
-                      <option value="shilin" id="shilin">士林區</option>
-                      <option value="datong" id="datong">大同區</option>
-                      <option value="daan" id="daan">大安區</option>
-                      <option value="zhongshan" id="zhongshan">中山區</option>
-                      <option value="zhongzheng" id="zhongzheng">中正區</option>
-                      <option value="neihu" id="neihu">內湖區</option>
-                      <option value="wenshan" id="wenshan">文山區</option>
-                      <option value="beitou" id="beitou">北投區</option>
-                      <option value="songshan" id="songshan">松山區</option>
-                      <option value="xinyi" id="xinyi">信義區</option>
-                      <option value="nangang" id="nangang">南港區</option>
-                      <option value="wanhua" id="wanhua">萬華區</option>
+                      <option value="taipei" id="taipei">台北市</option>
                     </select>
                   </div>
                 </td>
               </tr>
               <tr>
-                <td class="text">物件類型</td>
+                <tr>
+                  <td class="text">鄉鎮市區</td>
+                  <td>
+                    <div class="dropdown">
+                      <select class="selected" name="town" id="town" >
+                        <option value=""></option>
+                        <option value="士林區" id="shilin">士林區</option>
+                        <option value="大同區" id="datong">大同區</option>
+                        <option value="大安區" id="daan">大安區</option>
+                        <option value="中山區" id="zhongshan">中山區</option>
+                        <option value="中正區" id="zhongzheng">中正區</option>
+                        <option value="內湖區" id="neihu">內湖區</option>
+                        <option value="文山區" id="wenshan">文山區</option>
+                        <option value="北投區" id="beitou">北投區</option>
+                        <option value="松山區" id="songshan">松山區</option>
+                        <option value="信義區" id="xinyi">信義區</option>
+                        <option value="南港區" id="nangang">南港區</option>
+                        <option value="萬華區" id="wanhua">萬華區</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text">物件類型</td>
+                  <td>
+                    <div class="dropdown">
+                      <select class="selected" name="house_type" id="house_type">
+                        <option class="" value=""></option>
+                        <option value="apartment" id="apartment">公寓</option>
+                        <option value="villa" id="villa">別墅</option>
+                        <option value="mansion" id="mansion">電梯大樓</option>
+                        <option value="store" id="store">店面</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text">價位</td>
+                  <td>
+                    <div class="dropdown">
+                      <select class="selected" name="rental_price" id="rental_price">
+                        <option class="" value=""></option>
+                        <option value="price_20down" id="price_20down">20000元以下</option>
+                        <option value="price_20_40" id="price_20_40">20001-40000元</option>
+                        <option value="price_40_60" id="price_40_60">40001-60000元</option>
+                        <option value="price_60_80" id="price_60_80">60001-80000元</option>
+                        <option value="price_80_100" id="price_80_100">80001-100000元</option>
+                        <option value="price_100up" id="price_100up">100000元以上</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text">坪數大小</td>
+                  <td>
+                    <div class="dropdown">
+                      <select class="selected" name="size" id="size">
+                        <option class="" value=""></option>
+                        <option value="area_10down" id="area_10down">10坪以下</option>
+                        <option value="area_11_20" id="area_11_20">11-20坪</option>
+                        <option value="area_21_30" id="area_21_30">21-30坪</option>
+                        <option value="area_31_40" id="area_31_40">31-40坪</option>
+                        <option value="area_40up" id="area_40up">40坪以上</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+            </table>
+          </div>
+          <div class="table-right">
+            <table>
+              <tr>
+                <td class="text">距離大眾運輸</td>
                 <td>
                   <div class="dropdown">
-                    <select class="selected" name="town" id="town">
+                    <select class="selected" name="MRT_distance" id="MRT_distance">
                       <option class="" value=""></option>
-                      <option value="apartment" id="apartment">公寓</option>
-                      <option value="villa" id="villa">別墅</option>
-                      <option value="mansion" id="mansion">電梯大樓</option>
-                      <option value="store" id="store">店面</option>
+                      <option value="trans_500" id="trans_500">500m以內</option>
+                      <option value="trans_1000" id="trans_1000">1000以內</option>
+                      <option value="trans_1500" id="trans_1500">1500以內</option>
                     </select>
                   </div>
                 </td>
               </tr>
               <tr>
-                <td class="text">價位</td>
+                <td class="text">周圍年齡層</td>
                 <td>
                   <div class="dropdown">
-                    <select class="selected" name="town" id="town">
+                    <select class="selected" name="human_age" id="human_age">
                       <option class="" value=""></option>
-                      <option value="price_20down" id="price_20down">20000元以下</option>
-                      <option value="price_20_40" id="price_20_40">20001-40000元</option>
-                      <option value="price_40_60" id="price_40_60">40001-60000元</option>
-                      <option value="price_60_80" id="price_60_80">60001-80000元</option>
-                      <option value="price_80_100" id="price_80_100">80001-100000元</option>
-                      <option value="price_100up" id="price_100up">100000元以上</option>
+                      <option value="age_0_14" id="age_0_14">0-14歲</option>
+                      <option value="age_15_24" id="age_15_24" >15-24歲</option>
+                      <option value="age_25_39" id="age_25_39">25-39歲</option>
+                      <option value="age_40_64" id="age_40_64">40-64歲</option>
+                      <option cvalue="age_65up" id="age_65up">65歲以上</option>
                     </select>
                   </div>
                 </td>
               </tr>
               <tr>
-                <td class="text">坪數大小</td>
+                <td class="text">店面位置</td>
                 <td>
                   <div class="dropdown">
-                    <select class="selected" name="town" id="town">
+                    <select class="selected" name="road/alley" id="road/alley">
                       <option class="" value=""></option>
-                      <option value="area_10down" id="area_10down">10坪以下</option>
-                      <option value="area_11_20" id="area_11_20">11-20坪</option>
-                      <option value="area_21_30" id="area_21_30">21-30坪</option>
-                      <option value="area_31_40" id="area_31_40">31-40坪</option>
-                      <option value="area_40up" id="area_40up">40坪以上</option>
+                      <option value="road" id="loc_road">路/街</option>
+                      <option value="alley" id="loc_alley">巷/弄</option>
                     </select>
                   </div>
                 </td>
               </tr>
-          </table>
+              <tr>
+                <td class="text">屋齡</td>
+                <td>
+                  <div class="dropdown">
+                    <select class="selected" name="house_age" id="house_age">
+                      <option class="" value=""></option>
+                      <option value="house_age_10down" id="house_age_10down">10年以下</option>
+                      <option value="house_age_10_20" id="house_age_10_20">10-20年</option>
+                      <option value="house_age_20_30" id="house_age_20_30">20-30年</option>
+                      <option value="house_age_30up" id="house_age_30up">30年以上</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+              <tr>
+                <td class="text">裝潢</td>
+                  <td>
+                    <div class="dropdown">
+                      <select class="selected" name="裝潢" id="decorate">
+                        <option class="" value=""></option>
+                        <option value="0">無裝潢</option>
+                        <option value="1">簡易裝潢</option>
+                        <option value="2">中級裝潢</option>
+                        <option value="3">高級裝潢</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text">人流</td>
+                    <td>
+                      <div class="dropdown">
+                        <select class="selected" name="people_stream" id="people_stream">
+                          <option class="" value=""></option>
+                          <option value="day_morning">平日早上</option>
+                          <option value="day_afternoon">平日下午</option>
+                          <option value="day_night">平日晚上</option>
+                          <option value="weekend_morning">假日早上</option>
+                          <option value="weekend_afternoon">假日中午</option>
+                          <option value="weekend_night">假日晚上</option>
+                        </select>
+                      </div>
+                    </td>
+                </tr>
+                <tr>
+                <td class="text">特色物件</td>
+                <td>
+                  <div class="dropdown">
+                    <select class="selected" name="special" id="special">
+                      <option class="" value=""></option>
+                      <option value="true" id="specila_yes">是</option>
+                      <option value="false" id="specila_no">否</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="text">其他需求</td>
+                <td><textarea name="comment" id="other_request" cols="30" rows="10"></textarea></td>
+              </tr>
+
+            </table>
+          </div>
         </div>
-        <div class="table-right">
-          <table>
-            <tr>
-              <td class="text">距離大眾運輸</td>
-              <td>
-                <div class="dropdown">
-                  <select class="selected" name="town" id="town">
-                    <option class="" value=""></option>
-                    <option value="trans_500" id="trans_500">500m以內</option>
-                    <option value="trans_1000" id="trans_1000">1000以內</option>
-                    <option value="trans_1500" id="trans_1500">1500以內</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text">周圍年齡層</td>
-              <td>
-                <div class="dropdown">
-                  <select class="selected" name="town" id="town">
-                    <option class="" value=""></option>
-                    <option value="age_0_14" id="age_0_14">0-14歲</option>
-                    <option value="age_15_24" id="age_15_24" >15-24歲</option>
-                    <option value="age_25_39" id="age_25_39">25-39歲</option>
-                    <option value="age_40_64" id="age_40_64">40-64歲</option>
-                    <option cvalue="age_65up" id="age_65up">65歲以上</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text">店面位置</td>
-              <td>
-                <div class="dropdown">
-                  <select class="selected" name="town" id="town">
-                    <option class="" value=""></option>
-                    <option value="loc_road" id="loc_road">路/街</option>
-                    <option value="alley" id="loc_alley">巷/弄</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text">屋齡</td>
-              <td>
-                <div class="dropdown">
-                  <select class="selected" name="town" id="town">
-                    <option class="" value=""></option>
-                    <option value="house_age_10down" id="house_age_10down">10年以下</option>
-                    <option value="house_age_10_20" id="house_age_10_20">10-20年</option>
-                    <option value="house_age_20_30" id="house_age_20_30">20-30年</option>
-                    <option value="house_age_30up" id="house_age_30up">30年以上</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text">特色物件</td>
-              <td>
-                <div class="dropdown">
-                  <select class="selected" name="town" id="town">
-                    <option class="" value=""></option>
-                    <option value="specila_yes" id="specila_yes">是</option>
-                    <option value="specila_no" id="specila_no">否</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text">其他需求</td>
-              <td><textarea name="need" id="other_request" cols="30" rows="10"></textarea></td>
-            </tr>
-            
-          </table>
-        </div>
-      </div>
-      <!------------------upload btn------------------>
-      <button type="button" class="upload-btn" id="upload">上傳</button>
+        <!------------------upload btn------------------>
+        <button class="upload-btn" id="upload">上傳</button>
+      </form>
     
     <!------------------upload success------------------>
-    <div class="upload_success">
+    <div class="upload_success" id="upload_success">
       <div class="success_box">
         <img class="success_text" src="/static/tenant_wish_upload/img/success_text.png" alt="">
         <div class="upload_s_btn" >
-          <button class="s_btn" id="upload_other" type="button">上傳其他</button>
-          <button class="s_btn" id="done" type="button">完成</button>
+            <button class="s_btn" id="upload_other" type="button">上傳其他</button>
+          <a href="../../">
+            <button class="s_btn" id="done" type="button">返回主頁</button>
+          </a>
         </div>
       </div>
     </div>
 
   </div>
-
-  
-
-    
-   
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="/static/tenant_wish_upload/upload.js"></script>
   </body>
 
 </html>

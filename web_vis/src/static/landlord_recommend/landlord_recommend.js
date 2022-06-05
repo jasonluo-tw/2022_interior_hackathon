@@ -1,24 +1,17 @@
-// Wish list
-/*
-var shop_list = [
-    {name: '王大明', type: '小店面', size: '15坪', price: ['5,000', '10,000'], rate: 93, latlon: [25.09108, 121.5598], town: '信義區'},
-    {name: '三重王陽明', type: '潮店', size: '25坪', price: ['15,000', '20,000'], rate: 80, latlon: [25.09800, 121.5578], town: '松山區'},
-    {name: 'Hubert', type: '好店面', size: '300坪', price: ['30,000', '40,000'], rate: 70, latlon: [25.05800, 121.5460], town: '中山區'},
-    {name: '湖州杰倫', type: '店面', size: '15坪', price: ['25,000', '27,000'], rate: 50, latlon: [25.055, 121.560], town: '中正區'},
-]
-*/
 var mymap, pts_group
 var vm
 var card_over
 var shop_list
+var root = location.protocol + '//' + location.host;
 initVue()
 initMap()
 
 // Get query from URL
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
-console.log(urlParams.get('house_index'))
-const api_path = 'http://127.0.0.1:5000/api/calculate_similar?house_index='+urlParams.get('house_index')
+//console.log(urlParams.get('house_index'))
+
+const api_path = root + '/api/calculate_similar?house_index='+urlParams.get('house_index')
 fetch(api_path,  {
     headers: {
         'Content-Type': 'application/json'
@@ -165,7 +158,7 @@ function cardClick (index) {
     $("#bottom_block").css("height", 0)
 
     // Test fetch
-    let api_url = 'http://127.0.0.1:5000/api/get_region_info?town='+clicked_town+'&second_dis='+clicked_second
+    let api_url = root + '/api/get_region_info?town='+clicked_town+'&second_dis='+clicked_second
     vm['town'] = clicked_town
     vm['second_dis'] = clicked_second
     fetch(api_url, {
