@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css"/>
     <link rel="stylesheet" type="text/css" href="/static/basic.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/leafletmap/map.css"/>
     <link rel="stylesheet" type="text/css" href="/static/landlord_recommend/style.css"/>
     <!-- for bottom detail-->
     <link rel="stylesheet" type="text/css" href="/static/landlord_recommend/bottom_detail.css"/>
@@ -21,109 +22,132 @@
           -->
           <div class="right_box">
             <div class="top_bar">
-              <div class="our_logo"> </div>
-              <h1 class="title">商空月老</h1>
-              <div class="buttons">
+              <img class="logo-img" src="/static/tenant_recommend/img/logo-img.png" alt="">
+              <img class="logo-text" src="/static/tenant_recommend/img/project-name.png" alt=""  >
+              <img class="user" src="/static/tenant_recommend/img/user.png" alt="" width="180" >
+              <div class="top-btn">
                 <!--.c1.btn 改變需求-->
                 <!--.c1.btn 上傳物件-->
-                <div class="c1 btn b1">我要找房</div>
+                <!--<div class="c1 btn b1">我要找房</div>
                 <div class="c1 btn b2">我有房源</div>
                 <div class="c1 btn"><i class="user circle icon"></i></div>
+                -->
+                <button type="button" class="index-btn" id="rent" href="">我要租房</button>
+                <button type="button" class="index-btn" id="landlord" href="">我有房源</button>
               </div>
             </div>
-            <div class="bottom">
-              <div class="card" v-for="(item, cid) in shop" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)">
+            <div id="bottom_block" class="bottom">
+              <div class="card" v-for="(item, cid) in wish_list" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)">
                 <div class="logo">
-                  <!--img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")--><img v-bind:src="item.img_url"/>
+                  <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU"/> -->
+                  <img src="/static/landlord_recommend/img/WishCard1.png"/>
                 </div>
                 <div class="content">
                   <div class="info">
-                    <p>出租物件名稱: {{item.name}}</p>
-                    <p>物件類型: {{item.type}}</p>
-                    <p>物件坪數：{{item.size}}</p>
+                    <p>許願者: {{item.name}}</p>
+                    <p>城市: {{item.county}}</p>
+                    <p>鄉鎮市區：{{item.town}}</p>
+                    <p>類型：{{item.house_type}}</p>
                   </div>
                   <div class="scores">
-                    <p>配對率:</p>
-                    <div class="score">{{item.score}}%</div>
+                    <!--<p>配對率:</p>-->
+                    <div class="score">{{item.scores}}% Match</div>
                   </div>
                   <!--h2.rental_price ${{item.price[0]}}~${{item.price[1]}}/月-->
-                  <h2 class="rental_price">${{item.rental_price}}/月</h2>
+                  <!-- <h2 class="rental_price">${{item.rental_price}}/月</h2> -->
                 </div>
               </div>
             </div>
-            <div class="content"> 
+            <div class="bottom_detail">
+              <div id="close_detail" class="close_detail">
+                <i class="angle double down icon"></i>
+              </div>  
               <div class="wish_box">
                 <div class="box"> <img class="need-img" src="/static/landlord_recommend/img/need-img.png"/><img class="dot-img" src="/static/landlord_recommend/img/dot-img.png"/>
                   <div class="match"> 
-                    <p class="text">77% Match </p><img class="match_line-img" src="/static/landlord_recommend/img/match_line-img.png"/>
+                    <p class="text">{{ clicked_item.scores }}% Match </p>
+                    <div class="match_bottom"></div>
+                    <!-- <img class="match_line-img" src="/static/landlord_recommend/img/match_line-img.png"/> -->
                   </div>
                   <div class="wish_data"> 
                     <table> 
                       <tr> 
                         <td class="text" id="county">縣市:</td>
-                        <td class="text">台北市</td>
+                        <td class="text">{{ clicked_item.county }}</td>
                       </tr>
                       <tr> 
                         <td class="text" id="town">鄉鎮市區:</td>
-                        <td class="text">信義區</td>
+                        <td class="text">{{ clicked_item.town }}</td>
                       </tr>
                       <tr> 
                         <td class="text" id="type">物件類型:</td>
-                        <td class="text">電梯大樓</td>
+                        <td class="text">{{ clicked_item.house_type }}</td>
                       </tr>
                       <tr> 
                         <td class="text" id="price">價位:</td>
-                        <td class="text">20001-40000元</td>
+                        <td class="text">{{ clicked_item.rental_price }}</td>
                       </tr>
                       <tr> 
                         <td class="text" id="area">坪數大小:</td>
-                        <td class="text">11-20坪</td>
+                        <td class="text">{{ clicked_item.size }}</td>
                       </tr>
                       <tr> 
                         <td class="text" id="trans">距離大眾運輸:</td>
-                        <td class="text">500m以內</td>
+                        <td class="text">{{ clicked_item.MRT_distance }}</td>
                       </tr>
                       <tr> 
                         <td class="text" id="age">周圍年齡層:</td>
-                        <td class="text">25-39歲</td>
+                        <td class="text">{{ clicked_item.human_age }}</td>
                       </tr>
                       <tr> 
                         <td class="text" id="loc">店面位置:</td>
-                        <td class="text">巷/弄</td>
+                        <td class="text">{{ clicked_item['road/alley'] }}</td>
                       </tr>
                       <tr> 
                         <td class="text" id="house_age">屋齡</td>
-                        <td class="text">10-20年</td>
+                        <td class="text">{{ clicked_item.house_age }}</td>
                       </tr>
                       <tr> 
-                        <td class="text" id="special">特色物件</td>
-                        <td class="text">否</td>
+                        <td class="text" id="people_stream">人流</td>
+                        <td class="text">{{ clicked_item.people_stream }}</td>
                       </tr>
+                      <tr> 
+                        <td class="text" id="decoration">裝潢</td>
+                        <td class="text">{{ clicked_item['裝潢'] }}</td>
+                      </tr>
+                      <!-- <tr> 
+                        <td class="text" id="special">特色物件</td>
+                        <td class="text">--</td>
+                      </tr> -->
+
                     </table>
                     <div class="other_text"> 
                       <p class="text">其他需求:</p>
-                      <p class="text" id="other_request">希望沒有裝潢，牆壁可釘棚架可以鑽孔，尤其不要有壁癌滲水的狀況，要有大面的玻璃窗，最好是落地窗，可以清楚看到店內狀況，白天採光良好....</p>
+                      <p class="text" id="other_request">{{ clicked_item.comment }}</p>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="wisher_box"> 
-                <div class="box"> <img class="wisher-img" src="/static/landlord_recommend/img/wisher-img.png"/>
-                  <p class="text">許願者資料</p>
-                  <table class="wisher_data"> 
-                    <tr> 
-                      <td class="text">姓名:</td>
-                      <td class="text">XXX </td>
-                    </tr>
-                    <tr> 
-                      <td class="text">聯絡電話:</td>
-                      <td class="text">0933456934</td>
-                    </tr>
-                    <tr> 
-                      <td class="text">聯絡信箱:</td>
-                      <td class="text">databreath987@gmail.com</td>
-                    </tr>
-                  </table>
+                <div class="box">
+                  <img class="wisher-img" src="/static/landlord_recommend/img/wisher-img.png"/>
+                  <div class="info_text">
+                    <p class="text">許願者資料</p>
+                    <table class="wisher_data"> 
+                      <tr> 
+                        <td class="text">姓名:</td>
+                        <td class="text">{{ clicked_item.name }}</td>
+                      </tr>
+                      <tr> 
+                        <td class="text">聯絡電話:</td>
+                        <td class="text">{{ clicked_item.phone }}</td>
+                      </tr>
+                      <tr> 
+                        <td class="text">聯絡信箱:</td>
+                        <td class="text">{{ clicked_item.email }}</td>
+                      </tr>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -154,14 +178,15 @@
                 <h4 class="title">消費熱度指數</h4>
                 <div id="line_chart2"></div>
               </div>
-              <div class="location"> 
+              <!-- <div class="location"> 
                 <h4>二級行政區: {{second_dis}}</h4>
               </div>
+            -->
               <div class="chart_block">
                 <h4 class="title">土地使用</h4>
                 <div id="pie_chart"> </div>
               </div>
-              <div class="chart_block"> 
+              <div class="chart_block" style="margin-bottom: 100px"> 
                 <h4 class="title">年齡分佈</h4>
                 <div class="percent_block" id="year_1"><span>0-14歲</span><span class="right_text">%</span>
                   <div class="percent_bar">
@@ -189,7 +214,7 @@
                   </div>
                 </div>
               </div>
-              <div class="location"> 
+              <!-- <div class="location"> 
                 <h4>一公里內</h4>
               </div>
               <div class="chart_block"> 
@@ -201,7 +226,7 @@
                 <div id="text_chart"><i class="subway icon"> 
                     <div class="icon_text">0</div></i><i class="bus icon"> 
                     <div class="icon_text">0</div></i></div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="map" id="mapid"></div>
@@ -213,7 +238,9 @@
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="/static/leafletmap/init_map.js"></script>
+    <script src="/static/leafletmap/map_dev.js"></script>
     <script src="/static/landlord_recommend/landlord_recommend.js"></script>
-    <script src="/static/plot.js"></script>
+    <script src="/static/plot_landlord.js"></script>
   </body>
 </html>

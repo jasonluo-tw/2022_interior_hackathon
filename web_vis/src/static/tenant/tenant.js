@@ -15,11 +15,11 @@ function get_request () {
         let name = form[i]['name']
         let value = form[i]['value']
         console.log(name, value)
-        if(value == "") {
-            alert(`${name} 沒有填值`)
-            flag = false
-            break
-        }
+        //if(value == "") {
+        //    alert(`${name} 沒有填值`)
+        //    flag = false
+        //    break
+        //}
         query[name] = value
     }
     

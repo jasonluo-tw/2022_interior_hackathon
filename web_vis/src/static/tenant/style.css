@@ -19,7 +19,7 @@ body{
 .logo-text{
   position: absolute;
   padding-left:80px;
-  padding-top: 20px;
+  padding-top: 15px;
 }
 
 .top-btn{
@@ -70,7 +70,7 @@ body{
   padding: 0;
   height: 92.5vh;
   background-image:url("img/background-img.png"),linear-gradient(rgba(255, 255, 255, 0.5) ,rgba(112,112,112,0.5));
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -94,7 +94,7 @@ body{
 
 /*--------------- data table ---------------*/
 .content .data_table td{
-  padding: 1.5vh 6px;
+  padding: 2vh 6px;
   vertical-align: top;
   
 }
@@ -108,14 +108,15 @@ body{
 .content .table-left{
   position: absolute;
   left: 13vw;
-  top:220px;
+  top:250px;
 }
 
 .content .table-right{
   position: absolute;
   left: 38vw;
-  top:270px;
+  top:250px;
 }
+
 
 
 /*--------------- data table dropdown ---------------*/

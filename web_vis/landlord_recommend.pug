@@ -29,18 +29,20 @@ html(lang="en")
                                 .c1.btn
                                     i.user.circle.icon
                         .bottom
-                            .card(v-for="(item, cid) in shop" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)")
+                            //.card(v-for="(item, cid) in wish_list" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)")
+                            .card(v-for="(item, cid) in wish_list" v-bind:value="cid")
                                 .logo
-                                    //img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")
-                                    img(v-bind:src="item.img_url")
+                                    img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")
+                                    //img(v-bind:src="item.img_url")
                                 .content
                                     .info
-                                        p 出租物件名稱: {{item.name}}
-                                        p 物件類型: {{item.type}}
-                                        p 物件坪數：{{item.size}}
+                                        p 許願者: {{item.name}}
+                                        p 城市: {{item.county}}
+                                        p 鄉鎮市區：{{item.town}}
+                                        p 類型：{{item.house_type}}
                                     .scores
                                         p 配對率:
-                                        .score {{item.score}}%
+                                        .score {{item.scores}}%
                                     //h2.rental_price ${{item.price[0]}}~${{item.price[1]}}/月
                                     h2.rental_price ${{item.rental_price}}/月
                         .content 

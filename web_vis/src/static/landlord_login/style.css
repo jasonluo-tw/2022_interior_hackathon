@@ -13,8 +13,15 @@ body{
 .top_bar .logo-text{
     position: absolute;
     padding-left:80px;
-    padding-top: 20px;
+    padding-top: 10px;
 }
+
+.top_bar .logo-img{
+    position: absolute;
+    width: 50px;
+    top: 5px;
+    left: 10px;
+  }
   
 .top_bar .top-btn{
     padding-top: 20px;
@@ -65,10 +72,11 @@ body{
     height: 92.5vh;
     background-image:url("img/background-img.png");
     background-color:rgb(206, 235,225);
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     align-items: center;
     flex-direction: column;
+
 }
   
 .main form {

@@ -15,110 +15,32 @@
   height: 100%;
   display: flex;
 }
-/*--------------- top bar ---------------*/
-.main .top_bar{
-  height: 70px;
-  width: 100%;
-}
-
-.main .logo-img{
-  position: absolute;
-  width: 50px;
-  top: 8px;
-  left: 10px;
-}
-
-.main .logo-text{
-  position: absolute;
-  width: 220px;
-  padding-left:65px;
-  padding-top: 15px;
-}
-
-.main .user{
-  position: fixed;
-  left: 40vw;
-  top: 15px;
-  width: 45px;
-}
-
-.main .top-btn{
-  padding-top: 20px;
-  padding-left: 200px;
-}
-
-.main .index-btn {
-  left: 30px;
-  padding: 2px 10px;
-  margin: 0px 3px;
-  background-color: white;
-  border-radius: 20px;
-  border: solid 2px;
-  border-color:rgba(0,0,0,0);
-  color: black;
-  text-align: center;
-  font-size: 16px;
-  font-family: 'Noto Sans TC', sans-serif;
-  font-weight: 600;
-  text-decoration: none;
-  
-}
-
-.main .index-btn:hover {
-  border-color:rgba(0,0,0,1);
-  transition: 0.7s;
-}
-
-/*--------------- content ---------------*/
 .main .left .right_box {
   width: 100%;
   height: 100%;
+  padding-left: 20px;
   overflow: hidden;
 }
 .main .left .bottom {
   height: 100%;
-  padding-bottom: 100px;
-  border-top: solid 2px black;
+  border-top: solid 1px gray;
   transition-duration: 0.5s;
   overflow: scroll;
-  background-image: url("/static/tenant_recommend/img/background-img.png");
-  background-size: cover;
 }
-.main .left .bottom .uplaod_wish{
-  position: fixed;
-  left: 10px;
-  top:12%;
-  padding: 10px 5px;
-  background: none;
-  border: solid 2px black;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.main .left .bottom .wish-img{
-  position: fixed;
-  top: 23%;
-  left: 10px;
-  width: 30px;
-}
-
-/*--------------- card ---------------*/
 .main .left .bottom .card {
+  border: solid 2px gray;
   margin-top: 20px;
-  margin-left: 50px;
-  width: 90%;
-  height: 160px;
+  width: 95%;
+  height: 200px;
   border-radius: 20px;
   display: flex;
   overflow: hidden;
   cursor: pointer;
   transition-duration: 0.5s;
-  background-color: rgba(255, 255, 255, 0.7);
 }
 .main .left .bottom .card:hover {
-  border: solid 3px black;
   transform: translateY(-5%);
+  background-color: #e3e3e3;
   box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.2);
 }
 .main .left .bottom .card .logo {
@@ -129,19 +51,14 @@
 }
 .main .left .bottom .card img {
   width: 100%;
-  margin-left: 35px;
-  border-radius: 10px;
 }
 .main .left .bottom .card .content {
   width: 75%;
   display: flex;
-  margin-left: 30px;
 }
 .main .left .bottom .card .content .info {
   padding: 10px;
-  margin-top: 10px;
   width: 70%;
-  
 }
 .main .left .bottom .card .content .info p {
   margin: 0;
@@ -164,7 +81,6 @@
   margin-right: 5px;
 }
 .main .left .bottom .card .content .rental_price {
-  color: #576599;
   bottom: 3%;
 }
 .main .right {
@@ -178,7 +94,6 @@
   z-index: 1000;
 }
 
-/*--------------- info bar ---------------*/
 .info_bar {
   position: absolute;
   height: 100%;
@@ -287,8 +202,7 @@
 }
 
 .selectedCard {
-  border: 2px solid black;
   transform: translateY(-5%);
-  background-color: rgba(255, 255, 255, 1.0);
+  background-color: #e3e3e3;
   box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.2);
 }

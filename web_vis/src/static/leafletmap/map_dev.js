@@ -47,6 +47,10 @@ class BaseMap {
         this.outDOM = DOM_ID
 	    this.inDOM  = "inside_map"
 	    this.colorbarDOM = "colorbox"
+        // Sub
+        this.contourf_layers = {}
+        this.sub_pt_groups = {}
+        //
         this.clat = clat
 	    this.clon = clon
 	    this.clicking_pts = []
@@ -82,7 +86,7 @@ class BaseMap {
 	    // add control layer
 	    this.layer_control = L.control.layers()
 	    this.layer_control.addTo(this.basemap)
-	    this.layer_control.addOverlay(this.pts_group, 'points')
+	    this.layer_control.addOverlay(this.pts_group, '出租店面')
 
 	    let this_ = this
 	    // enable point clicking
@@ -237,6 +241,32 @@ class BaseMap {
         return this 
     }
 
+    addSubPoints (datas, layer_name, pane_name, d_color) {
+        let pt_pane = this.basemap.createPane(pane_name)
+        this.sub_pt_groups[layer_name] = L.featureGroup({pane: pt_pane}).addTo(this.basemap)
+	    this.layer_control.addOverlay(this.sub_pt_groups[layer_name], pane_name)
+
+        for(let i in datas){
+            let name = datas[i]['name']
+	        // Make Tooltip Pane
+            let tooltip_pane = this.basemap.createPane('toolTipPane')
+            tooltip_pane.style.zIndex = 3000
+	        // Produce a point
+            L.circleMarker(
+                [datas[i]['latitude'], datas[i]['longitude']], {
+                    className: 'circle_transition',
+                    radius: 4,
+                    color: "white",
+                    weight: 1,
+                    fillColor: d_color,
+                    fillOpacity: 1.0,
+                    name: name,
+            })
+            .bindTooltip(name, {direction: 'top'}, {pane: tooltip_pane})
+            .addTo(this.sub_pt_groups[layer_name])
+        }//end forloop
+    }
+
     //TODO: I think there should be some function which will clear all layers and points and colorbars
     clearPoints () {
         this.pts_group.clearLayers()
@@ -245,37 +275,50 @@ class BaseMap {
     }
 
     //TODO: add params config?
-    addContourf (jsondata, data_type='geojson') {
+    addContourf (jsondata, pane_name, layer_name, 
+                                eachFeature=null, data_type='geojson', cf_style="contourf", zindex=300) {
         /* 
 	    * jsondata: geojson
 	    */
-	    if(this.contourf_layer) {
-	        this.contourf_layer.clearLayers()
-	        this.contourf_layer.addData(jsondata, {
-                style: setStyle4CF,
+        let plot_style
+        if(cf_style == 'contourf') {
+            plot_style = setStyle4CF
+        }else if(cf_style == 'contour'){
+            plot_style = setStyle4region
+        }
+
+	    if(this.contourf_layers[layer_name]) {
+	        this.contourf_layers[layer_name].clearLayers()
+	        this.contourf_layers[layer_name].addData(jsondata, {
+                style: plot_style,
 	        })
+        
 	    }else{
-            this.basemap.createPane('contourfPane')
-	        this.basemap.getPane('contourfPane').style.zIndex = 300
+            this.basemap.createPane('contourf_'+pane_name)
+	        this.basemap.getPane('contourf_'+pane_name).style.zIndex = zindex
+            let eachFeatureFunction
+            if(eachFeature) {
+                eachFeatureFunction = eachFeature
+            }else{
+                eachFeatureFunction = (feature, layer) => {}
+            }
 
 	        if(data_type == 'geojson') {
-	            this.contourf_layer = L.geoJSON(jsondata, {
-                    style: setStyle4CF,
-	                pane: 'contourfPane',
-                    //onEachFeature: function (feature, layer) {
-                    //}
+	            this.contourf_layers[layer_name] = L.geoJSON(jsondata, {
+                    style: plot_style,
+	                pane: 'contourf_'+pane_name,
+                    onEachFeature: eachFeatureFunction
 	            })
 	        }else if(data_type == 'topojson') {
-	            this.contourf_layer = L.topoJson(jsondata, {
-                    style: setStyle4CF,
-	                pane: 'contourfPane',
-                    //onEachFeature: function (feature, layer) {
-                    //}
+	            this.contourf_layers[layer_name] = L.topoJson(jsondata, {
+                    style: plot_style,
+	                pane: 'contourf_'+pane_name,
+                    onEachFeature: eachFeatureFunction
 	            })
 	        }
 	        //
-	        this.contourf_layer.addTo(this.basemap)
-	        this.layer_control.addOverlay(this.contourf_layer, "contourf")
+	        this.contourf_layers[layer_name].addTo(this.basemap)
+	        this.layer_control.addOverlay(this.contourf_layers[layer_name], pane_name)
 	    }
     } //end of addContourf
 
@@ -540,13 +583,28 @@ function create_japan_tile_map(mapdata, option) {
 // This one is for contourf
 function setStyle4CF(feature) {
     return {
-        fillColor: feature.properties.fill,
+        //fillColor: feature.properties.fill,
+        fillColor: "#fcba03",
 	    weight: 1,
 	    //opacity: feature.properties["stroke-opacity"],
 	    opacity: 0.5,
-	    color: feature.properties.stroke,
+	    //color: feature.properties.stroke,
+        color: "#fcba03",
 	    //dashArray: '3',
-	    fillOpacity: feature.properties["fill-opacity"]
+	    //fillOpacity: feature.properties["fill-opacity"]
+    }
+}
+
+function setStyle4region(feature) {
+    return {
+        fillColor: null,
+	    weight: 2,
+	    //opacity: feature.properties["stroke-opacity"],
+	    opacity: 0.5,
+	    //color: feature.properties.stroke,
+        color: "#ed1109",
+	    //dashArray: '3',
+        fillOpacity: 0
     }
 }
 

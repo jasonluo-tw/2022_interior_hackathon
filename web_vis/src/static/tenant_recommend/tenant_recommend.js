@@ -6,23 +6,12 @@ var selectedCard = null
 var root = location.protocol + '//' + location.host;
 
 initVue()
+initMap()
 
-//initMap()
-//initial map
-var mymap = new BaseMap('mapid', clat=25.09108, clon=121.5598)
-mymap = mymap.addBaseMap(point_click=false).addMapboxMap()
-mymap.pts_group.on("click", PtClickFunction)
-// control location
-L.control.zoom({
-    position: 'topright'
-}).addTo(mymap.basemap)
-
-// Get shop_info mation
+// Get shop_infomation
 // Get query from URL
 const queryString = window.location.search
 const api_path = root + '/api/get_shop_info' + queryString
-//console.log(api_path)
-
 fetch(api_path,  {
     headers: {
         'Content-Type': 'application/json'
@@ -54,7 +43,6 @@ function initVue() {
     })
 }
 
-
 function PtClickFunction (e) {
     let card_index = e.layer.options.card_index
     document.querySelector("#card_"+card_index).scrollIntoView({
@@ -79,11 +67,20 @@ function cardClick (index) {
     let lat = shop_list[index]['latitude']
     let lon = shop_list[index]['longitude']
     let clicked_layer = mymap._select_change(clicked_name)
-    
+    // print clicked name
+    console.log("Click", clicked_name, clicked_second, clicked_town)
+
+    // geojson fetch
+    geojson_load('district', clicked_town, pane_name='區')
+    geojson_load('second_district', clicked_second, pane_name='二級')
+
     //detail & show detail
     vm.clicked_item = shop_list[index]
-    console.log(vm.clicked_item)
+    //console.log(vm.clicked_item)
     $("#bottom_block").css("height", 0)
+    $("#bottom_block").css("padding-bottom", 0)
+    $("#uplaod_wish").css("position", "absolute")
+    $("#wish-img").css("position", "absolute")
 
     // fetch region information
     let api_url = root + '/api/get_region_info?town='+clicked_town+'&second_dis='+clicked_second
@@ -107,8 +104,6 @@ function cardClick (index) {
     mymap.basemap.flyTo([lat, lon], 14)
     mymap._pt_click(clicked_layer, basemap_key_flag)
 
-    // print clicked name
-    console.log("Click", clicked_name)
 }
 
 function cardOver (index) {
@@ -132,4 +127,7 @@ $(".close > p").click(() => {
 
 $("#close_detail").click(() => {
     $("#bottom_block").css("height", "100%")
+    $("#bottom_block").css("padding-bottom", "100px")
+    $("#uplaod_wish").css("position", "fixed")
+    $("#wish-img").css("position", "fixed")
 })

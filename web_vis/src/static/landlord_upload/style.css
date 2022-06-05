@@ -21,7 +21,7 @@ body{
 .top-bar .logo-text{
   position: absolute;
   padding-left:80px;
-  padding-top: 20px;
+  padding-top: 15px;
 }
 
 .top-bar .top-btn{
@@ -73,21 +73,26 @@ body{
   height: 92.5vh;
   background-image:url("img/background-img.png");
   background-color:rgb(206, 235,225);
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
-
+.find-text{
+  position: absolute;
+  width: 20vw;
+  left: 12vw;
+  top:21.5vh
+}
 
 /*--------------- data table ---------------*/
 
 .content .data_table{
   position: absolute;
   background-color: none;
-  left: 12vw;
-  top: 24vh;
+  left: 15vw;
+  top: 32vh;
   width: 75vw;
-  height: 62vh;
+  height: 52vh;
   overflow-y: scroll;
 }
 
@@ -181,7 +186,7 @@ textarea{
 .go-btn{
   position: absolute;
   left: 43vw;
-  top: 87vh;
+  top: 86vh;
   border-radius: 30px;
   border: solid 3px black;
   background-color: white;

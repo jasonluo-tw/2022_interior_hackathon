@@ -1,4 +1,5 @@
 from re import I
+import json
 import pandas as pd
 import os, sys
 
@@ -21,9 +22,12 @@ def get_region_data(root_path, town_name=None, second_dis=None):
 
     return data
 
-def process_region_data(data):
+def process_region_data(data, second_dis=None):
     consume_index = data['consumption_index']
-    second_data = data['second_data']
+    if second_dis is not None:
+        second_data = data['second_data']
+    else:
+        second_data = data['data']
     data = data['data']
     ## land use
     all_land = second_data[['商業', '純住宅', '混合使用住宅']].copy()#.sum(axis=1)
@@ -117,6 +121,13 @@ def get_all_wish_list(path):
     wish_embedding = pd.read_csv(file_path, dtype='str')
 
     return wish_list, wish_embedding
+
+def read_geojson(path, prefix, filename):
+    filepath = os.path.join(path, 'geojson', prefix, filename)
+    with open(filepath, 'r') as f:
+        geojson = json.load(f)
+
+    return geojson
 
 if __name__ == '__main__':
     #data = get_region_data('/home/jasonluo/Documents/competition/2022_interior_hackathon/data', town_name='大安區', second_dis='A6303-18')

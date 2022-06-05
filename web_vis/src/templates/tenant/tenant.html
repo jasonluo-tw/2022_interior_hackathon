@@ -76,72 +76,9 @@
                     <select class="selected" name="house_type" id="house_type">
                       <option class="" value=""></option>
                       <option value="apartment" id="apartment">公寓</option>
-                      <option value="villa" id="villa">別墅</option>
+                      <option value="villa" id="villa">透天厝</option>
                       <option value="mansion" id="mansion">電梯大樓</option>
                       <option value="store" id="store">店面</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="text">價位</td>
-                <td>
-                  <div class="dropdown">
-                    <select class="selected" name="rental_price" id="rental_price">
-                      <option class="" value=""></option>
-                      <option value="price_20down" id="price_20down">20000元以下</option>
-                      <option value="price_20_40" id="price_20_40">20001-40000元</option>
-                      <option value="price_40_60" id="price_40_60">40001-60000元</option>
-                      <option value="price_60_80" id="price_60_80">60001-80000元</option>
-                      <option value="price_80_100" id="price_80_100">80001-100000元</option>
-                      <option value="price_100up" id="price_100up">100000元以上</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="text">坪數大小</td>
-                <td>
-                  <div class="dropdown">
-                    <select class="selected" name="size" id="size">
-                      <option class="" value=""></option>
-                      <option value="area_10down" id="area_10down">10坪以下</option>
-                      <option value="area_11_20" id="area_11_20">11-20坪</option>
-                      <option value="area_21_30" id="area_21_30">21-30坪</option>
-                      <option value="area_31_40" id="area_31_40">31-40坪</option>
-                      <option value="area_40up" id="area_40up">40坪以上</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-            </table>
-          </div>
-          <div class="table-right">
-            <table>
-              <tr>
-                <td class="text">距離大眾運輸</td>
-                <td>
-                  <div class="dropdown">
-                    <select class="selected" name="MRT_distance" id="MRT_distance">
-                      <option class="" value=""></option>
-                      <option value="trans_500" id="trans_500">500m以內</option>
-                      <option value="trans_1000" id="trans_1000">1000以內</option>
-                      <option value="trans_1500" id="trans_1500">1500以內</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="text">周圍年齡層</td>
-                <td>
-                  <div class="dropdown">
-                    <select class="selected" name="human_age" id="human_age">
-                      <option class="" value=""></option>
-                      <option value="age_0_14" id="age_0_14">0-14歲</option>
-                      <option value="age_15_24" id="age_15_24" >15-24歲</option>
-                      <option value="age_25_39" id="age_25_39">25-39歲</option>
-                      <option value="age_40_64" id="age_40_64">40-64歲</option>
-                      <option cvalue="age_65up" id="age_65up">65歲以上</option>
                     </select>
                   </div>
                 </td>
@@ -154,6 +91,55 @@
                       <option class="" value=""></option>
                       <option value="road" id="loc_road">路/街</option>
                       <option value="alley" id="loc_alley">巷/弄</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              
+            </table>
+          </div>
+          <div class="table-right">
+            <table>
+              <tr>
+                <td class="text">價位</td>
+                <td>
+                  <div class="dropdown">
+                    <select class="selected" name="rental_price" id="rental_price">
+                      <option class="" value=""></option>
+                      <option value="price_20down" id="price_20down">20,000元 以下</option>
+                      <option value="price_20_40" id="price_20_40">40,000元 以下</option>
+                      <option value="price_40_60" id="price_40_60">60,000元 以下</option>
+                      <option value="price_60_80" id="price_60_80">80,000元 以下</option>
+                      <option value="price_80_100" id="price_80_100">100,000元 以下</option>
+                      <option value="price_100up" id="price_100up">100,000元 以上</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="text">坪數大小</td>
+                <td>
+                  <div class="dropdown">
+                    <select class="selected" name="size" id="size">
+                      <option class="" value=""></option>
+                      <option value="area_10down" id="area_10down">10坪 以下</option>
+                      <option value="area_11_20" id="area_11_20">20坪 以下</option>
+                      <option value="area_21_30" id="area_21_30">30坪 以下</option>
+                      <option value="area_31_40" id="area_31_40">40坪 以下</option>
+                      <option value="area_40up" id="area_40up">40坪 以上</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="text">距離大眾運輸</td>
+                <td>
+                  <div class="dropdown">
+                    <select class="selected" name="MRT_distance" id="MRT_distance">
+                      <option class="" value=""></option>
+                      <option value="trans_500" id="trans_500">500m以內</option>
+                      <option value="trans_1000" id="trans_1000">1000以內</option>
+                      <option value="trans_1500" id="trans_1500">1500以內</option>
                     </select>
                   </div>
                 </td>
@@ -172,20 +158,6 @@
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td class="text">特色物件</td>
-                <td>
-                  <div class="dropdown">
-                    <select class="selected" name="special" id="special">
-                      <option class="" value=""></option>
-                      <option value="true" id="specila_yes">是</option>
-                      <option value="false" id="specila_no">否</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-
-
             </table>
           </div>
         </div>
@@ -203,7 +175,7 @@
         </div>
         <div class="smart_select" id="ss3">
           <div class="smart_btn_img"></div>
-          <button class="smart_btn" id ="bt_ss3" type="button">老屋新生</br>潛力空間</button>
+          <button class="smart_btn" id ="bt_ss3" type="button">靜謐隱藏</br>潛力空間</button>
         </div>
         <div class="smart_select" id="ss4">
           <div class="smart_btn_img"></div>

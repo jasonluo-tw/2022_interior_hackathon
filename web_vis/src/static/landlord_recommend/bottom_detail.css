@@ -84,23 +84,37 @@ body{
 
 /*--------------- content ---------------*/
 
-.content{
+.bottom_detail{
+    position: relative;
     display:flex;
+    align-items: center;
     left: 0;
     bottom: 0;
     flex-direction: column;
     padding: 0;
     height: 100vh;
-    background-image:url("img/background-img.png");
-    background-size: 120vw;
-    background-repeat: no-repeat;
+    /* background-image:url("img/background-img.png"); */
+    background-image: url("/static/landlord_recommend/img/background-img2.png");
+    background-color: rgba(0,0,0,0.1);
+    background-size: cover;
+}
+
+.close_detail {
+    position: absolute;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 5px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
 }
 
 /*--------------- wish box ---------------*/
 .wish_box .box{
-    position: absolute;
-    left: 2.5vw;
-    top: 90px;
+    margin-top: 20px;
+    position: relative;
+    /* left: 2.5vw;
+    top: 45px; */
     width: 40vw;
     height: 55vh;
     background: rgba(87,101,153,0.7);
@@ -132,19 +146,30 @@ body{
     font-size: 28px;
     font-weight: 600;
     color: #99FFDA;
+    margin-bottom: 0;
 }
 
+.match .match_bottom {
+    height: 10px;
+    background-color: #99FFDA;
+    border-radius: 10px;
+}
+
+/*
 .match_line-img{
     top: 9vh;
     position: absolute;
     width: 12vw;
 }
+*/
 
 .wish_data{
     position: absolute;
     left: 1vw;
     top: 18vh;
     width: 37vw;
+    display: flex;
+    flex-direction: row;
 }
 
 .wish_data .text{
@@ -158,9 +183,6 @@ td{
 }
 
 .other_text{
-    position: absolute;
-    top: -1vw;
-    right: 0;
     max-width: 16vw;
     max-height: 35vh;
     overflow-y: scroll;
@@ -171,26 +193,37 @@ td{
 
 /*--------------- wisher box ---------------*/
 .wisher_box .box{
-    position: absolute;
-    left: 2.5vw;
-    top: 72vh;
+    margin-top: 20px;
+    position: relative;
+    /* left: 2.5vw;
+    top: 72vh; */
     width: 40vw;
     height: 18vh;
     background: rgba(255,255,255,0.7);
     border: solid 3px #576599;
     border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px
 }
 
 .wisher-img{
-    position:absolute;
+    /* position:absolute;
     left: 1vw;
     top: 2.5vh;
+    */
     width: 12vw;
     border: solid 2px #576599;
     border-radius: 10px;
 }
 
+.wisher_box .box .info_text {
+    padding-left: 5%;
+}
+
 .wisher_box .text{
+    margin-top: 10px;
     color:#576599;
     font-weight: 400;
     font-size: 14px;
@@ -198,13 +231,15 @@ td{
 }
 
 .wisher_box p{
-    position: absolute;
+    /* position: absolute;
     left: 15vw;
     top: 0vh;
+    */
 }
 
 .wisher_data{
-    position: absolute;
+    /* position: absolute;
     top: 6vh;
     left: 14vw;
+    */
 }

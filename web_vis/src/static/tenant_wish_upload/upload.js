@@ -20,7 +20,7 @@ function post() {
             }
         },
         error: function(error) {
-            alert('上傳不成功')
+            alert('上傳不成功，請填選每個選項')
         }
     })
 }

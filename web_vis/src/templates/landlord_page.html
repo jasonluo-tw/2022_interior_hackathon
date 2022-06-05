@@ -11,37 +11,46 @@
   </head>
   <body>
     <div id="navi_bar"> 
-      <div class="top_bar">
-        <div class="our_logo"> </div>
-        <h1 class="title">商空月老</h1>
-        <div class="buttons">
-          <div class="c1 btn b1">我要找房</div>
-          <div class="c1 btn b2">我有房源</div>
-          <div class="c1 btn"><i class="user circle icon"></i></div>
+      <div class="top-bar"> 
+        <img class="logo-img" src="/static/landlord_portal/img/logo-img.png" alt="">
+        <img class="logo-text" src="/static/landlord_portal/img/project-name.png" alt="" width="180" >
+        <div class="top-btn">
+          <button type="button" class="index-btn" id="rent" href="">我要租房</button>
+          <button type="button" class="index-btn" id="landlord" href="">我有房源</button>
         </div>
+        <img class="user" src="/static/landlord_portal/img/user.png" alt="" width="180" >
       </div>
     </div>
+    <hr class="top-line">
     <div class="main">
-      <div class="left"> </div>
+      <div class="bottom_box">
+        <h2 class="title">你</br>的</br>物</br>件</h2>
+      </div>
+      <div class="left"> 
+        <img class="user-head" src="/static/landlord_portal/img/user-head.png" alt="">
+        <div class="buttons">
+          <!--<div class="c1 btn b1">登出</div>
+          <div class="c1 btn b2">上傳物件</div>-->
+          <button type="button" class="btn" id="log_out">登出</button>
+          <button type="button" class="btn" id="upload">上傳物件</button>
+        </div>
+      </div>
       <div class="right">
         <div class="user_info">
           <div class="info_card">
-            <h4>姓名：{{ username }}</h4>
-            <h4>使用者帳號類型：免費</h4>
-            <h4>XXXXXX</h4>
-            <h4>XXXXXX</h4>
+            <h4 class="user_name">使用者帳號：{{ username }}</h4>
+            <h4>使用者帳號類型：免費帳號</br>自 2022 年 5 月 20 日 加入平台</h4>
+            <h5>聯絡電話: 0934567987</h5>
+            <h5>聯絡email: databreath@mail.com</h5>
           </div>
-          <div class="buttons">
-            <div class="c1 btn b1">登出</div>
-            <div class="c1 btn b2">上傳物件</div>
-          </div>
+          
         </div>
         <div class="house_info"> 
-          <h2 class="title">你的物件</h2>
+          
           <div class="house">
             {% for house_info in house_infos %}
               <div class="house_card">
-                <a href={{ "../map?house_index="+house_info['house_index'] }}>WishList Search</a>
+                <a class="WishList_Search" href={{ "../map?house_index="+house_info['house_index'] }}>WishList Search</a>
                 <h5 class="title"> {{ house_info['name'] }}</h3>
                 <div class="image">
                   <img src={{ house_info['img_url'] }}>
@@ -57,7 +66,10 @@
             {% endfor %}
           </div>
         </div>
+        
       </div>
+      
     </div>
+    
   </body>
 </html>

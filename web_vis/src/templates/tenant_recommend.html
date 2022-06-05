@@ -23,17 +23,25 @@
           -->
           <div class="right_box">
             <div class="top_bar">
-              <div class="our_logo"> </div>
-              <h1 class="title">商空月老</h1>
-              <div class="buttons">
+              <img class="logo-img" src="/static/tenant_recommend/img/logo-img.png" alt="">
+              <img class="logo-text" src="/static/tenant_recommend/img/project-name.png" alt=""  >
+              <img class="user" src="/static/tenant_recommend/img/user.png" alt="" width="180" >
+              <div class="top-btn">
                 <!--.c1.btn 改變需求-->
                 <!--.c1.btn 上傳物件-->
-                <div class="c1 btn b1">我要找房</div>
+                <!--<div class="c1 btn b1">我要找房</div>
                 <div class="c1 btn b2">我有房源</div>
                 <div class="c1 btn"><i class="user circle icon"></i></div>
+                -->
+                <button type="button" class="index-btn" id="rent" href="">我要租房</button>
+                <button type="button" class="index-btn" id="landlord" href="">我有房源</button>
               </div>
             </div>
             <div class="bottom" id="bottom_block">
+              <a href="../tenant/wish_upload">
+                <button class="uplaod_wish" id="uplaod_wish">許</br>願</br>需</br>求</button>
+              </a>
+              <img class="wish-img" id="wish-img" src="/static/tenant_recommend/img/wish-img.png" alt="">
               <div class="card" v-for="(item, cid) in shop" v-bind:value="cid" v-bind:id="'card_' + cid" @click="c_click(cid)" @mouseover="c_over(cid)" @mouseleave="c_leave(cid)">
                 <div class="logo">
                   <!--img(src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGMxh6fQpzDtUwCSk4zCy5L948sAJfnpCW6A&usqp=CAU")--><img v-bind:src="item.img_url"/>
@@ -44,18 +52,21 @@
                     <p>物件類型: {{item.type}}</p>
                     <p>物件坪數：{{item.size}}</p>
                   </div>
+                  <!--
                   <div class="scores">
                     <p>配對率:</p>
                     <div class="score">{{item.score}}%</div>
                   </div>
+                  -->
                   <!--h2.rental_price ${{item.price[0]}}~${{item.price[1]}}/月-->
                   <h2 class="rental_price">${{item.rental_price}}/月</h2>
                 </div>
               </div>
+              
             </div>
             <div class="bottom_detail"> 
               <div class="left_detail"> 
-                <h3>{{ clicked_item.name }}</h3>
+                <h3 class="item_name">{{ clicked_item.name }}</h3>
                 <div class="circle_block"> 
                   <div class="circle"> </div>
                   <div class="circle"> </div>
@@ -190,6 +201,7 @@
     <!-- leaflet.draw-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="/static/leafletmap/init_map.js"></script>
     <script src="/static/leafletmap/map_dev.js"></script>
     <script src="/static/tenant_recommend/tenant_recommend.js"></script>
     <script src="/static/plot.js"></script>

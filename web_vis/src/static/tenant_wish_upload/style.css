@@ -20,7 +20,7 @@ body{
 .top-bar .logo-text{
   position: absolute;
   padding-left:80px;
-  padding-top: 20px;
+  padding-top: 15px;
 }
 
 .top-bar .top-btn{
@@ -130,10 +130,11 @@ body{
   box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.2);
 }
 
-textarea{
+.text_area{
   background-color: white;
   padding: 10px 15px;
   width: 15vw;
+  height: 10vh;
   border: none;
   border-radius: 15px;
   box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.2);

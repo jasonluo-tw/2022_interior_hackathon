@@ -3,6 +3,9 @@
   height: 90%;
   display: flex;
   padding-top: 10px;
+  padding-left: 10px;
+  background-image: url("/static/tenant_recommend/img/background-img2.png");
+  background-size: cover;
 }
 .bottom_detail .detail_text {
   font-size: 16px;
@@ -23,15 +26,22 @@
   margin-top: 20px;
   margin-bottom: 0;
 }
+
+.bottom_detail .left_detail .item_name {
+  color: #576599;
+  text-shadow: #99FFDA 2px 2px;
+  font-weight: 600;
+  font-size: 30px;
+}
 .bottom_detail .left_detail .circle_block .circle {
   width: 10px;
   height: 10px;
-  background-color: #6462f5;
+  background-color: #576599;
   border-radius: 50%;
   display: inline-block;
 }
 .bottom_detail .left_detail .img_block {
-  border: 1px solid black;
+  border: 2px solid black;
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -41,7 +51,7 @@
   width: 100%;
 }
 .bottom_detail .left_detail .special_detail {
-  background-color: #b0ceff;
+  background-color: rgba(87,101,153,0.7);
   width: 100%;
   overflow: scroll;
   border: 2px solid black;
@@ -63,13 +73,14 @@
 .bottom_detail .right_detail .price_block {
   margin-top: 20px;
   margin-bottom: 40px;
+  text-align: right;
 }
 .bottom_detail .right_detail .price_block h1.price {
   margin-bottom: 0;
 }
 .bottom_detail .right_detail .price_block .bottom_bar {
   height: 10px;
-  background-color: #4de3eb;
+  background-color: #99FFDA;
   border-radius: 10px;
 }
 .bottom_detail .right_detail .detail_info {
