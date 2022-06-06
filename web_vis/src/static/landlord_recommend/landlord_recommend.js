@@ -26,7 +26,7 @@ fetch(api_path,  {
     console.log(json)
     vm['wish_list'] = json['wish']
     wish_list = json['wish']
-    if(json['target_shop']['lonlat'] != 0){
+    if(json['target_shop'][0]['lonlat'] != 0){
         mymap.addPoints(json['target_shop'], {label: "${name}"})
         mymap.basemap.flyTo([json['target_shop'][0]['latitude'], json['target_shop'][0]['longitude']], 14)
     }

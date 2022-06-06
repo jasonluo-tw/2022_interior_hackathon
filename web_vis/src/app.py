@@ -74,6 +74,7 @@ app.add_url_rule('/api/calculate_similar',
 app.add_url_rule('/api/store_wish', view_func=api.store_tenant_wish, methods=['POST'])
 app.add_url_rule('/api/get_geojson', view_func=api.get_geojson, methods=['GET'])
 app.add_url_rule('/api/get_poi_info', view_func=api.get_poi_info, methods=['GET'])
+app.add_url_rule('/api/get_MRT_info', view_func=api.get_MRT_info, methods=['GET'])
 
 
 if __name__ == '__main__':

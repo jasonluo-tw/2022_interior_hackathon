@@ -3,20 +3,28 @@
   <head>
     <meta charset="UTF-8"/>
     <title>商空月老</title>
+    <link rel="icon" href="/static/tenant_recommend/img/logo-img.png">
+    <meta property="og:image" content="/static/tenant_recommend/img/project-name.png">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css"/>
     <link rel="stylesheet" type="text/css" href="/static/basic.css"/>
     <link rel="stylesheet" type="text/css" href="/static/landlord_page.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <div id="navi_bar"> 
       <div class="top-bar"> 
         <img class="logo-img" src="/static/landlord_portal/img/logo-img.png" alt="">
-        <img class="logo-text" src="/static/landlord_portal/img/project-name.png" alt="" width="180" >
+        <a href="/">
+          <img class="logo-text" src="/static/landlord_portal/img/project-name.png" alt="" width="180" >
+        </a>
         <div class="top-btn">
-          <button type="button" class="index-btn" id="rent" href="">我要租房</button>
-          <button type="button" class="index-btn" id="landlord" href="">我有房源</button>
+          <a href="/tenant"><button type="button" class="index-btn" id="rent" href="">我要租房</button></a>
+          <a href="/landlord"><button type="button" class="index-btn" id="landlord" href="">我有房源</button></a>
         </div>
         <img class="user" src="/static/landlord_portal/img/user.png" alt="" width="180" >
       </div>
@@ -29,9 +37,7 @@
       <div class="left"> 
         <img class="user-head" src="/static/landlord_portal/img/user-head.png" alt="">
         <div class="buttons">
-          <!--<div class="c1 btn b1">登出</div>
-          <div class="c1 btn b2">上傳物件</div>-->
-          <button type="button" class="btn" id="log_out">登出</button>
+          <a href="/landlord"><button type="button" class="btn" id="log_out">登出</button></a>
           <button type="button" class="btn" id="upload">上傳物件</button>
         </div>
       </div>
@@ -40,7 +46,7 @@
           <div class="info_card">
             <h4 class="user_name">使用者帳號：{{ username }}</h4>
             <h4>使用者帳號類型：免費帳號</br>自 2022 年 5 月 20 日 加入平台</h4>
-            <h5>聯絡電話: 0934567987</h5>
+            <h5>聯絡電話: 0912345678</h5>
             <h5>聯絡email: databreath@mail.com</h5>
           </div>
           

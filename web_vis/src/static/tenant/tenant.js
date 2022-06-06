@@ -41,6 +41,7 @@ $("#bt_ss2").click(function(evt) {
 $("#bt_ss3").click(function(evt) {
     location.href = root + "/tenant/map?smart=bt_ss3"
 })
-$("#bt_ss4").click(function(evt) {
-    location.href = root + "/tenant/map?smart=bt_ss4"
-})
+//Not implemented yet
+//$("#bt_ss4").click(function(evt) {
+//    location.href = root + "/tenant/map?smart=bt_ss4"
+//})

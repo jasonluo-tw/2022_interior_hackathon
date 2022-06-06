@@ -25,9 +25,7 @@ function initMap() {
     }).catch(error => {
         console.log(error, 'geojson, fetch_error')
     })
-    //TODO
-    // Get MRT
-    // Get
+    // plot PoI
     let mapping = {'餐廳餐館': 'Restaurant', '美容美髮服務': 'Beauty',
                                     '便利商店': 'Conv_Store', '飲料店業': 'Drink', 
                                     '日常用品零售': 'Retail', '其他綜合零售':'Other_Retail'}
@@ -37,26 +35,35 @@ function initMap() {
             iconSize: [25, 25],
         }
     })
+
     for(let name in mapping) {
-        png_file = mapping[name]+'.png'
         //let icon = L.icon({
         //    iconUrl: '/static/StorePoI_Icon/'+png_file,
         //    iconAnchor: [22, 94],
         //    iconSize: [5, 5],
         //    popupAnchor: [-3, -76]
         //})
-        let icon = new LeafIcon({iconUrl: '/static/StorePoI_Icon/'+png_file})
-
         fetch(root+'/api/get_poi_info?name='+name, {
             headers: {
                 'Content-Type': 'application/json'
             },
             method: 'get'
         }).then(response => response.json()).then(json => {
-            mymap.addSubPoints(json, name, mapping[name], icon)
+            let png_file = mapping[json['name']]+'.png'
+            let icon = new LeafIcon({iconUrl: '/static/StorePoI_Icon/'+png_file})
+            mymap.addSubPoints(json['poi'], mapping[name], name, icon)
         })
     }
-
+    // Get MRT
+    fetch(root+'/api/get_MRT_info', {
+        header: {
+            'Content-Type': 'application/json'
+        },
+        method: 'get'
+    }).then(response => response.json()).then(json => {
+        let icon = new LeafIcon({iconUrl: '/static/StorePoI_Icon/MRT.png'})
+        mymap.addSubPoints(json, 'MRT', '捷運', icon)
+    })
 }
 
 function geojson_load(type, name, pane_name, layer_name=null) {
@@ -73,11 +80,17 @@ function geojson_load(type, name, pane_name, layer_name=null) {
         }
         if(layer_name){
             mymap.addContourf(json, pane_name, layer_name, 
-                region_area, 'geojson', "contour", 250)
+                region_area, 'geojson', "contour_big", 250)
 
         }else{
-            mymap.addContourf(json, pane_name, type, 
-                region_area, 'geojson', "contour", 250)
+            if(pane_name == '區'){
+                mymap.addContourf(json, pane_name, type, 
+                    region_area, 'geojson', "contour_big", 250)
+            }else{
+                mymap.addContourf(json, pane_name, type, 
+                    region_area, 'geojson', "contour_small", 250)
+
+            }
         }
     })
 }

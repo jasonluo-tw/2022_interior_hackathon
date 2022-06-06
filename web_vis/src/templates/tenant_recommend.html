@@ -3,9 +3,15 @@
   <head>
     <meta charset="UTF-8"/>
     <title>商空月老</title>
+    <link rel="icon" href="/static/tenant_recommend/img/logo-img.png">
+    <meta property="og:image" content="/static/tenant_recommend/img/project-name.png">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- leaflet draw-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
     <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" /> -->
@@ -26,17 +32,13 @@
           <div class="right_box">
             <div class="top_bar">
               <img class="logo-img" src="/static/tenant_recommend/img/logo-img.png" alt="">
-              <img class="logo-text" src="/static/tenant_recommend/img/project-name.png" alt=""  >
+              <a href="/">
+                <img class="logo-text" src="/static/tenant_recommend/img/project-name.png" alt=""  width="180">
+              </a>
               <img class="user" src="/static/tenant_recommend/img/user.png" alt="" width="180" >
               <div class="top-btn">
-                <!--.c1.btn 改變需求-->
-                <!--.c1.btn 上傳物件-->
-                <!--<div class="c1 btn b1">我要找房</div>
-                <div class="c1 btn b2">我有房源</div>
-                <div class="c1 btn"><i class="user circle icon"></i></div>
-                -->
-                <button type="button" class="index-btn" id="rent" href="">我要租房</button>
-                <button type="button" class="index-btn" id="landlord" href="">我有房源</button>
+                <a href="/tenant"><button type="button" class="index-btn" id="rent" href="">我要租房</button></a>
+                <a href="/landlord"><button type="button" class="index-btn" id="landlord" href="">我有房源</button></a>
               </div>
             </div>
             <div class="bottom" id="bottom_block">
@@ -105,10 +107,10 @@
                     <div class="detail_text pad">租約：{{clicked_item['租約']}}</div>
                     <div class="detail_text pad">縣市：台北市</div>
                     <div class="detail_text pad">鄉鎮市區：{{clicked_item.town}}</div>
-                    <div class="detail_text pad">屋齡：{{clicked_item.house_age}}</div>
+                    <div class="detail_text pad">屋齡：{{clicked_item.house_age}}年</div>
                     <div class="detail_text pad">裝潢：{{clicked_item['裝潢']}}</div>
                     <div class="detail_text pad">是否有停車位：{{clicked_item['車位']}}</div>
-                    <div class="detail_text pad">距離大眾運輸： {{clicked_item.MRT_distance}}</div>
+                    <div class="detail_text pad">距離大眾運輸： {{clicked_item.MRT_distance}}公尺</div>
                     <div class="detail_text pad">店面位置： {{clicked_item['小巷0/大路1']}}</div>
                   </div>
                 </div>

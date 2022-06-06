@@ -15,17 +15,16 @@ function post() {
         let name = form[i]['name']
         let value = form[i]['value']
         if(value == ""){
-            //alert(`${name} 沒有填值喔`)
-            //flag = false
-            //break
+            //alert(`${text_name} 沒有填喔`)
+            alert(`沒有填完整喔`)
+            flag = false
+            break
         }
         query[name] = value
     }
 
     let search_url = new URLSearchParams(query).toString()
     let redirect_url = root + "/landlord/map?" + search_url
-    //TEST
-    flag = true
     if(flag) {
         location.href = redirect_url
     }

@@ -194,7 +194,7 @@ function plot_all(region_json, shop_info) {
   // bar chart example
   plot_bar_chart('bar_chart', region_json['population']['x'], region_json['population']['value'])
   // line chart example
-  plot_line_chart('line_chart', region_json['shop_price'], '租金')
+  plot_line_chart('line_chart', region_json['shop_price'], '金額/坪')
   plot_line_chart('line_chart2', region_json['consume_index'], '消費熱度指數')
   // year bar 
   plot_horizontal_bar('year_1', region_json['age']['0-14歲人口數'])

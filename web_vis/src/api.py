@@ -32,7 +32,6 @@ def get_shop_info():
     args = request.args
     data = get_shop_data(config_path['data'])
 
-    ##TODO: filtering
     scores = None
     ## smart search
     if 'smart' in args.to_dict():
@@ -98,6 +97,7 @@ def calculate_scores_wish_list():
         for item in shop_items:
             if str(item['house_index']) == house_index:
                 target_shop_item = item
+                target_shop_item['lonlat'] = 1
                 break
         ## get shop embedding 
         target_shop_embedding = get_shop_embedding(config_path['data'], house_index)
@@ -111,7 +111,6 @@ def calculate_scores_wish_list():
             return jsonify(response)
 
     ## get all wish list
-    ##TODO: check join features 
     wish_list, wish_embedding = get_all_wish_list(config_path['data'])
 
     scores, index = calculate_shop_similarity(target_shop_embedding, wish_embedding)
@@ -196,12 +195,21 @@ def get_poi_info():
         data = data.iloc[::2]
     out_dict = data.to_dict('index')
     out_dict = list(out_dict.values())
+    out_dict = {'poi': out_dict, 'name': type_name}
 
     return jsonify(out_dict)
 
-#def 
+def get_MRT_info():
+    data = pd.read_csv(os.path.join(config_path['data'], 'MRT_station_lonlat.csv'), encoding='big5')
+    data = data[['出入口名稱', '經度', '緯度']].rename(columns={'出入口名稱': 'name', '經度': 'longitude', '緯度': 'latitude'})
+    
+    out_dict = data.to_dict('index')
+    out_dict = list(out_dict.values())
+
+    return jsonify(out_dict)
 
 if __name__ == '__main__':
-   #json_wish = calculate_scores_wish_list()
+    #json_wish = calculate_scores_wish_list()
     #print(json_wish)
-    get_poi_info()
+    #get_poi_info()
+    get_MRT_info()

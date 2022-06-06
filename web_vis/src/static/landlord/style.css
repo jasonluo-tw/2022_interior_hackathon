@@ -75,11 +75,32 @@ body{
   background-size: cover;
 }
 
+.match{
+  position: absolute;
+  width: 55vw;
+  height: 20vh;
+  left: 37vw;
+  top: 40vh;
+  background-image: url(/static/landlord/img/match-img.png);
+  background-size: cover;
+}
+
+.upload{
+  position: absolute;
+  width: 55vw;
+  height: 20vh;
+  left: 37vw;
+  top: 67vh;
+  background-image: url(/static/landlord/img/upload-img.png);
+  background-size: cover;
+}
+
 /*--------------- go btn ---------------*/
 
 .go-btn{
   position: absolute;
-  left: 81vw;
+  right: 2vw;
+  top: 8vh;
   border-radius: 30px;
   border: solid 3px black;
   background-color: white;
@@ -91,18 +112,13 @@ body{
   font-weight: 400;
   text-decoration: none;
   cursor: pointer;
+  z-index: 2;
 }
 
 .go-btn:hover{
   box-shadow:  8px 8px #576599;
   transform: translateX(-5px) translateY(-5px);
   transition: 0.3s;
+
 }
 
-#match{
-  top: 46vh;
-}
-
-#upload{
-  top: 73vh;
-}

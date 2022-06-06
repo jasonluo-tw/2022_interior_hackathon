@@ -247,7 +247,7 @@ class BaseMap {
             showCoverageOnHover: false,
             iconCreateFunction: function(cluster) {
                 const number = cluster.getChildCount()
-                return L.divIcon({html: number, className: 'cluster '+pane_name, iconSize: L.point(25, 25)})
+                return L.divIcon({html: number, className: 'cluster '+layer_name, iconSize: L.point(25, 25)})
             }
         })
         //this.sub_pt_groups[layer_name] = L.featureGroup({pane: pt_pane})//.addTo(this.basemap)
@@ -293,8 +293,10 @@ class BaseMap {
         let plot_style
         if(cf_style == 'contourf') {
             plot_style = setStyle4CF
-        }else if(cf_style == 'contour'){
-            plot_style = setStyle4region
+        }else if(cf_style == 'contour_big'){
+            plot_style = setStyle4big
+        }else if(cf_style == 'contour_small'){
+            plot_style = setStyle4small
         }
 
 	    if(this.contourf_layers[layer_name]) {
@@ -605,14 +607,27 @@ function setStyle4CF(feature) {
     }
 }
 
-function setStyle4region(feature) {
+function setStyle4big(feature) {
     return {
         fillColor: null,
-	    weight: 2,
+	    weight: 3,
 	    //opacity: feature.properties["stroke-opacity"],
 	    opacity: 0.5,
 	    //color: feature.properties.stroke,
         color: "#ed1109",
+	    //dashArray: '3',
+        fillOpacity: 0
+    }
+}
+
+function setStyle4small(feature) {
+    return {
+        fillColor: null,
+	    weight: 3,
+	    //opacity: feature.properties["stroke-opacity"],
+	    opacity: 0.5,
+	    //color: feature.properties.stroke,
+        color: "#576599",
 	    //dashArray: '3',
         fillOpacity: 0
     }

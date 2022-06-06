@@ -3,9 +3,15 @@
   <head>
     <meta charset="UTF-8"/>
     <title>商空月老</title>
+    <link rel="icon" href="/static/tenant_recommend/img/logo-img.png">
+    <meta property="og:image" content="/static/tenant_recommend/img/project-name.png">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/components/icon.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/leaflet.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="/static/basic.css"/>
     <link rel="stylesheet" type="text/css" href="/static/landlord_login/landlord_login.css"/>
     -->
@@ -16,10 +22,12 @@
     <div id="navi_bar"> 
         <div class="top_bar">
             <img class="logo-img" src="/static/tenant/img/logo-img.png" alt="">
-            <img class="logo-text" src="/static/landlord_login/img/project-name.png" alt="" width="250" >
+            <a href="/">
+              <img class="logo-text" src="/static/landlord_login/img/project-name.png" alt="" width="250" >
+            </a>
             <div class="top-btn">
-                <button type="button" class="index-btn" id="rent" href="">我要租房</a>
-                <button type="button" class="index-btn" id="landlord" href="">我有房源</a>
+                <a href="/tenant"><button type="button" class="index-btn" id="rent" href="">我要租房</button></a>
+                <a href="/landlord"><button type="button" class="index-btn" id="landlord" href="">我有房源</button></a>
             </div>
             <img class="user" src="/static/landlord_login/img/user.png" alt="" width="180">
         </div>

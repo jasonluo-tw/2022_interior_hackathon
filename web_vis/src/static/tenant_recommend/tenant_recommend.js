@@ -76,6 +76,8 @@ function cardClick (index) {
 
     //detail & show detail
     vm.clicked_item = shop_list[index]
+    let road_map = {0: '小巷', 1: '大路'}
+    vm.clicked_item['小巷0/大路1'] = vm.clicked_item['小巷0/大路1']
     //console.log(vm.clicked_item)
     $("#bottom_block").css("height", 0)
     $("#bottom_block").css("padding-bottom", 0)

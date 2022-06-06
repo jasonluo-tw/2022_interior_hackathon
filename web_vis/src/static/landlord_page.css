@@ -1,5 +1,6 @@
 html, body {
   min-height: 768px;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 
 .main {
