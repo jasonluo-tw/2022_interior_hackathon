@@ -1,12 +1,13 @@
 data: /home/jasonluo/Documents/competition/2022_interior_hackathon/data
+mapping_file: /home/jasonluo/Documents/competition/2022_interior_hackathon/web_vis/src/py_utils
 
 tenant:
-  tenant: ['/tenant', 'tenant/tenant.html']
+  tenant: ['/tenant/', 'tenant/tenant.html']
   wish_upload: ['/tenant/wish_upload', 'tenant/tenant_wish_upload.html']
   map: ['/tenant/map', 'tenant_recommend.html']
 
 landlord:
-  landlord: ['/landlord', 'landlord/landlord.html']
+  landlord: ['/landlord/', 'landlord/landlord.html']
   login: ['/landlord/login', 'landlord/landlord_login.html']
   portal: ['/landlord/portal/<username>', 'landlord_page.html']
   upload: ['/landlord/upload', 'landlord/landlord_upload.html']

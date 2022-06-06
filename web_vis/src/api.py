@@ -162,7 +162,7 @@ def calculate_scores_wish_list():
 def store_tenant_wish():
     form = request.form.to_dict()
     try:
-        store_wishlist(config_path['data'], form)
+        store_wishlist(config_path['data'], config_path['mapping_file'], form)
         response = 'success'
     except:
         response = 'failure'
@@ -182,6 +182,26 @@ def get_geojson():
 
     return jsonify(geojson)
 
+def get_poi_info():
+    args = request.args
+    type_name = args['name']
+    
+    ##TEST
+    #type_name = '餐廳餐館'
+
+    data = pd.read_csv(os.path.join(config_path['data'], 'existing_shops', type_name+'.csv'))
+    data = data[['商業名稱', 'lon', 'lat']].rename(columns={'商業名稱': 'name', 'lon': 'longitude', 'lat': 'latitude'})
+    data = data.fillna('')
+    if type_name == '餐廳餐館':
+        data = data.iloc[::2]
+    out_dict = data.to_dict('index')
+    out_dict = list(out_dict.values())
+
+    return jsonify(out_dict)
+
+#def 
+
 if __name__ == '__main__':
-    json_wish = calculate_scores_wish_list()
+   #json_wish = calculate_scores_wish_list()
     #print(json_wish)
+    get_poi_info()

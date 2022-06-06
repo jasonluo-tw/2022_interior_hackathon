@@ -1,3 +1,4 @@
+var root = location.protocol + '//' + location.host;
 
 $("#upload").click(function(evt) {
     evt.preventDefault()
@@ -8,7 +9,7 @@ $("#upload").click(function(evt) {
 function post() {
     var form = $("form").serializeArray()
     $.ajax({
-        url: 'http://127.0.0.1:5000/api/store_wish',
+        url: root + '/api/store_wish',
         method: "post",
         data: form,
         success: function(res) {
@@ -20,6 +21,7 @@ function post() {
             }
         },
         error: function(error) {
+            console.log(error)
             alert('上傳不成功，請填選每個選項')
         }
     })

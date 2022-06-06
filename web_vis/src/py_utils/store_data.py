@@ -3,9 +3,9 @@ import numpy as np
 import os
 import yaml
 
-def store_wishlist(path, wish_form):
+def store_wishlist(path, map_path, wish_form):
     ## open mapping table
-    with open('/home/jasonluo/Documents/competition/2022_interior_hackathon/web_vis/src/py_utils/shop_feature_mapping.yaml', 'r') as f:
+    with open(os.path.join(map_path, 'shop_feature_mapping.yaml'), 'r') as f:
         map_table = yaml.safe_load(f)
 
     ## read wishlist & embedding

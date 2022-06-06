@@ -155,15 +155,22 @@ function plot_traffic_nums(dom_id, child_dom, total_nums) {
 }
 
 function plot_shop_nums(dom_id, shop_data, shop_list) {
+  // map
+  let mapping = {'餐廳餐館': 'Restaurant.png', '便利商店': 'Conv_Store.png', '美容美髮服務': 'Beauty.png',
+   '日常用品零售': 'Retail.png', '飲料店業': 'Drink.png', '其他綜合零售': 'Other_Retail.png'}
+
+
   const shop_node = document.getElementById(dom_id)
   shop_node.innerHTML = ""
   for(let i=0; i<shop_list.length; i++){
     let shop_name = shop_list[i]
+    let png_filename = mapping[shop_name]
+    console.log(png_filename)
     let shop_nums = shop_data[shop_name]
-    let html_tag = `<span id="shop_${i}">${shop_name}: <span class="number">0</span></span>`
+    let html_tag = `<div id="PoI_${i}" class="PoI"><img style="width: 20px; height:20px;" src="/static/StorePoI_Icon/${png_filename}"><span id="shop_${i}">${shop_name}: <span class="number">0</span></span></div>`
     $(`#${dom_id}`).append(html_tag)
 
-    run_number(`#${dom_id} > span#shop_${i} > span.number`, shop_nums)
+    run_number(`#${dom_id} > div#PoI_${i} > span#shop_${i} > span.number`, shop_nums)
   }
 }
 

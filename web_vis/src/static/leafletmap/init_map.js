@@ -27,7 +27,36 @@ function initMap() {
     })
     //TODO
     // Get MRT
-    // Get 
+    // Get
+    let mapping = {'餐廳餐館': 'Restaurant', '美容美髮服務': 'Beauty',
+                                    '便利商店': 'Conv_Store', '飲料店業': 'Drink', 
+                                    '日常用品零售': 'Retail', '其他綜合零售':'Other_Retail'}
+    //let name = '餐廳餐館'
+    var LeafIcon = L.Icon.extend({
+        options: {
+            iconSize: [25, 25],
+        }
+    })
+    for(let name in mapping) {
+        png_file = mapping[name]+'.png'
+        //let icon = L.icon({
+        //    iconUrl: '/static/StorePoI_Icon/'+png_file,
+        //    iconAnchor: [22, 94],
+        //    iconSize: [5, 5],
+        //    popupAnchor: [-3, -76]
+        //})
+        let icon = new LeafIcon({iconUrl: '/static/StorePoI_Icon/'+png_file})
+
+        fetch(root+'/api/get_poi_info?name='+name, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'get'
+        }).then(response => response.json()).then(json => {
+            mymap.addSubPoints(json, name, mapping[name], icon)
+        })
+    }
+
 }
 
 function geojson_load(type, name, pane_name, layer_name=null) {

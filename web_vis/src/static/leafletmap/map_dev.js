@@ -221,7 +221,7 @@ class BaseMap {
 	        }
 	        // Make Tooltip Pane
 	        let tooltip_pane = this.basemap.createPane('toolTipPane')
-            tooltip_pane.style.zIndex = 3000
+            tooltip_pane.style.zIndex = 8000
 	        // Produce a point
 	        L.circleMarker(
                 [datas[i]['latitude'], datas[i]['longitude']], {
@@ -241,29 +241,39 @@ class BaseMap {
         return this 
     }
 
-    addSubPoints (datas, layer_name, pane_name, d_color) {
-        let pt_pane = this.basemap.createPane(pane_name)
-        this.sub_pt_groups[layer_name] = L.featureGroup({pane: pt_pane}).addTo(this.basemap)
+    addSubPoints (datas, layer_name, pane_name, icon) {
+        //let pt_pane = this.basemap.createPane(pane_name)
+        this.sub_pt_groups[layer_name] = L.markerClusterGroup({
+            showCoverageOnHover: false,
+            iconCreateFunction: function(cluster) {
+                const number = cluster.getChildCount()
+                return L.divIcon({html: number, className: 'cluster '+pane_name, iconSize: L.point(25, 25)})
+            }
+        })
+        //this.sub_pt_groups[layer_name] = L.featureGroup({pane: pt_pane})//.addTo(this.basemap)
 	    this.layer_control.addOverlay(this.sub_pt_groups[layer_name], pane_name)
 
         for(let i in datas){
             let name = datas[i]['name']
 	        // Make Tooltip Pane
             let tooltip_pane = this.basemap.createPane('toolTipPane')
-            tooltip_pane.style.zIndex = 3000
+            tooltip_pane.style.zIndex = 2000
 	        // Produce a point
-            L.circleMarker(
-                [datas[i]['latitude'], datas[i]['longitude']], {
-                    className: 'circle_transition',
-                    radius: 4,
-                    color: "white",
-                    weight: 1,
-                    fillColor: d_color,
-                    fillOpacity: 1.0,
-                    name: name,
-            })
+            //L.circleMarker(
+            //    [datas[i]['latitude'], datas[i]['longitude']], {
+            //        className: 'circle_transition',
+            //        radius: 4,
+            //        color: "white",
+            //        weight: 1,
+            //        fillColor: d_color,
+            //        fillOpacity: 1.0,
+            //        name: name,
+            //})
+            let mm = L.marker([datas[i]['latitude'], datas[i]['longitude']], 
+                                {icon: icon})
             .bindTooltip(name, {direction: 'top'}, {pane: tooltip_pane})
-            .addTo(this.sub_pt_groups[layer_name])
+            this.sub_pt_groups[layer_name].addLayer(mm)
+            //.addTo(this.sub_pt_groups[layer_name])
         }//end forloop
     }
 

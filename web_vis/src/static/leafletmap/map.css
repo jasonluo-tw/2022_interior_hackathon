@@ -14,6 +14,43 @@
 
 }
 
+.cluster {
+    border: 1px solid gray;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+}
+
+.cluster.Restaurant {
+    background-color: rgba(87, 101, 153, 0.5);
+}
+
+.cluster.Beauty {
+    background-color: rgba(153, 255, 218, 0.5);
+}
+
+.cluster.Conv_Store {
+    background-color: rgba(118, 171, 169, 0.5);
+}
+
+.cluster.Drink {
+    background-color: rgba(165, 165, 165, 0.5);
+}
+
+.cluster.Retail {
+    background-color:rgba(255, 77, 77, 0.5)
+}
+
+.cluster.Other_Retail {
+    background-color:rgba(182, 166, 224, 0.5)
+}
+
+.cluster.MRT {
+    background-color: rgba(73, 106, 196, 0.5)
+}
+
 .loader {
     background: rgba(255, 255, 255, 1.0)
                 url('./circle_loader.svg')
