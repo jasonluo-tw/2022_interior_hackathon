@@ -26,16 +26,18 @@ def store_wishlist(path, map_path, wish_form):
     wish_embedding.update(tmp_embedding)
     ## change wish_form
     wish_form = change_wish_attr(wish_form, map_table)
-    print(wish_form)
+    #print(wish_form)
     ## Store data
     wish_form = pd.DataFrame({i: [wish_form[i]] for i in wish_form})
     wish_embedding = pd.DataFrame({i: [wish_embedding[i]] for i in wish_embedding})
     if wish_info is not None:
-        wish_info = pd.concat((wish_info, wish_form))
-        wish_embed = pd.concat((wish_embed, wish_embedding))
+        wish_info = pd.concat((wish_info, wish_form), ignore_index=True)
+        wish_embed = pd.concat((wish_embed, wish_embedding), ignore_index=True)
         ##
+        wish_info = wish_info.fillna('')
         wish_info = wish_info.drop_duplicates()
-        wish_embed = wish_embed.drop_duplicates()
+        #wish_embed = wish_embed.drop_duplicates()
+        wish_embed = wish_embed.loc[wish_info.index]
         wish_info.insert(0, 'index', np.arange(len(wish_info)))
         wish_embed.insert(0, 'index', np.arange(len(wish_embed)))
     else:
@@ -111,9 +113,10 @@ if __name__ == '__main__':
         data = f.readlines()
 
     header = data[0].rstrip('\n').split(',')[1:]
-    info = data[1].rstrip('\n').split(',')[1:]
+    info = data[2].rstrip('\n').split(',')[1:]
 
     wish_form = dict([(i, j) for i, j in zip(header, info)])
     path = '/home/jasonluo/Documents/competition/2022_interior_hackathon/data'
-    store_wishlist(path, wish_form)
+    map_path = '/home/jasonluo/Documents/competition/2022_interior_hackathon/web_vis/src/py_utils'
+    store_wishlist(path, map_path, wish_form)
     #print(wish_form)

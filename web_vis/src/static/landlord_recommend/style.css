@@ -84,9 +84,7 @@
   overflow: scroll;
   background-image: url("/static/landlord_recommend/img/background-img.png");
   background-size: cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding-left: 25px;
 }
 .main .left .bottom .uplaod_wish{
   position: absolute;
